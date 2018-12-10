@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Intelx.io - search results</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style> pre { margin:0 0 0 2em; } </style>
+    <script>
+
+        var API_KEY = '9df61df0-84f7-4dc7-b34c-8ccfb8646ace';
+        var API_URL = 'https://public.intelx.io/';
+
+        $(document).on('click', '#btnSearch', function (event) {
+            event.preventDefault();
+
+            if ($('#searchField').val() == '') {
+                return;
+            }
+            $('#searchResults').html('<p>Searching for results...</p>');
+
+            $.ajax({
+                url: API_URL + "intelligent/search",
+                headers: { 'x-key': API_KEY },
+                type: 'POST',
+                cache: true,
+                data: JSON.stringify({
+                    term: $('#searchField').val(),
+                    lookuplevel: 0,
+                    maxresults: 10,
+                    media: 0,
+                    terminate: []
+                }),
+                success: function (p, statusText, xhr) {
+                    $.ajax({
+                        url: API_URL + "intelligent/search/result",
+                        headers: { 'x-key': API_KEY },
+                        type: 'GET',
+                        cache: true,
+                        data: "id=" + p.id + "&limit=10&statistics=1&previewlines=8",
+                        success: function (data, textStatus, xhr) {
+                            $('#searchResults').html("");
+                            if (!!data && data.records.length > 0) {
+                                $.each(data.records, function (i, record) {
+                                    $.ajax({
+                                        url: API_URL + "file/preview",
+                                        headers: { 'x-key': API_KEY },
+                                        type: 'GET',
+                                        cache: true,
+                                        data: "sid=" + record['storageid'] +
+                                            "&f=" + 0 +
+                                            "&l=" + 8 +
+                                            "&c=" + 1 +
+                                            "&m=" + 1 +
+                                            "&b=" + 'pastes' +
+                                            "&k=" + API_KEY,
+                                        success: function (preview, textStatus, xhr) {
+                                            if (record['name'] != '') {
+                                                $('#searchResults').append('<h3>' + record['name'] + '</h3>');
+                                            }
+                                            $('#searchResults').append(record['date'] + '<br><pre>' + preview + '</pre><br><a href="https://intelx.io/?did=' + record['systemid'] + '" target="_blank">Full Data</a><hr>	');
+                                        }
+                                    });
+                                });
+                            } else {
+                                $('#searchResults').html('<p>Nothing found :(</p>');
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+
+    <form>
+        <fieldset>
+            <legend>Enter your search phrase</legend>
+            <input type="search" id="searchField" placeholder="Search topics or keywords" size="50">
+            <button class="btn btn-lg btn-success" type="submit" id="btnSearch">Search</button>
+        </fieldset>
+    </form>
+
+    <div id="searchResults">
+
+    </div>
+
+</body>
+
+</html>
