@@ -75,7 +75,6 @@ class searchAPI
 		$post = [
 			"term" => $term,
 			"buckets" => [],
-			"lookuplevel" => 0,
 			"maxresults" => 1000,
 			"timeout" => 0,
 			"datefrom" => "",

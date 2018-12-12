@@ -26,9 +26,9 @@
                 cache: true,
                 data: JSON.stringify({
                     term: $('#searchField').val(),
-                    lookuplevel: 0,
                     maxresults: 10,
                     media: 0,
+                    sort: 2,
                     terminate: []
                 }),
                 success: function (p, statusText, xhr) {

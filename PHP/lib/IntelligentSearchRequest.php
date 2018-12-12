@@ -31,7 +31,6 @@ class IntelligentSearchRequest
 	private $api = null;
 	protected $term;
 	protected $buckets = [];
-	protected $lookuplevel = 0;
 	protected $maxresults = 1000;
 	protected $timeout = 0;
 	protected $datefrom = "";
@@ -55,7 +54,6 @@ class IntelligentSearchRequest
 		return [
 			"term" => $this->term,
 			"buckets" => $this->buckets,
-			"lookuplevel" => $this->lookuplevel,
 			"maxresults" => $this->maxresults,
 			"timeout" => $this->timeout,
 			"datefrom" => $this->datefrom,
@@ -121,14 +119,6 @@ class IntelligentSearchRequest
 	public function setBuckets($buckets)
 	{
 		$this->buckets = $buckets;
-	}
-	
-	/**
-	 * @param int $lookuplevel
-	 */
-	public function setLookuplevel($lookuplevel)
-	{
-		$this->lookuplevel = $lookuplevel;
 	}
 	
 	/**
