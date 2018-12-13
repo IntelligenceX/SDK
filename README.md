@@ -9,7 +9,8 @@ The SDK contains these parts:
 1. [API documentation](Intelligence%20X%20Public%20API.pdf)
 2. [HTML code example](HTML/search.html)
 3. [PHP code example](PHP/index.php)
-4. [API calls in Fiddler archive](Public%20API%20Examples%20Fiddler.saz)
+4. [Go package and code](Go/ixapi/README.md)
+5. [API calls in Fiddler archive](Public%20API%20Examples%20Fiddler.saz)
 
 ## Link to intelx.io
 

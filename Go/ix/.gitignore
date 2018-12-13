@@ -1,0 +1,7 @@
+*.tmp
+debug
+.vscode
+.sync
+*.log
+*.exe
+debug.test
