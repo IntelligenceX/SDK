@@ -30,4 +30,21 @@ def ix_search(term):
         "media": 0,
         "terminate": []
     } 
+
     
+    getid = requests.post(searchurl,data=json.dumps(payload),headers=headers)
+    id_response = getid.json()
+
+    #Authenticate to API
+    if id_response['status'] == 0:
+        print colored("[+]Successful API Authentication. Starting records search.","green")
+        #Craft API URL with the id to return results
+        resulturl = "https://public.intelx.io/intelligent/search/result?id=%s" %str(id_response['id'])
+
+    else:
+        print "----------------------------------------------"
+        print "[!] Error Code Status: <" + str(data['status']) + ">"
+        print "----------------------------------------------"
+        print "Code <2> | Search ID Not Found."
+        print "Code <3> | No Results at this time. Try later."
+        print "----------------------------------------------"
