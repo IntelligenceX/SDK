@@ -72,6 +72,7 @@ def ixphonebook(term):
 if __name__ == "__main__":
 
     start = time.time()
+    #python ix_phonebook.py <selector>
     ixphonebook(sys.argv[1])
     end = time.time()
     print colored("[*] The script executed in [" + str((end-start)) + " seconds|" + str(((end-start)/60)) + " minutes].","blue")
