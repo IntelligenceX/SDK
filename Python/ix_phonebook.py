@@ -15,13 +15,13 @@ today = str(date.today())
 
 #Phonebook search that will return results for a given selector
 def ixphonebook(term):
-    searchurl = 'https://2.intelx.io/phonebook/search'
-    key = '9dbc5564-00d4-40b6-8d56-dde235b4312c'
+    searchurl = 'https://public.intelx.io/phonebook/search'
+    key = '9df61df0-84f7-4dc7-b34c-8ccfb8646ace'
     
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5",
         "x-key": key,
-        "Host": "2.intelx.io",
+        "Host": "public.intelx.io",
         "Content-Length": "212"
         }
 
