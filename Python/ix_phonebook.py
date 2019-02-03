@@ -2,7 +2,6 @@
 
 import re,sys,os,time
 import requests
-from requests.exceptions import HTTPError
 import json
 from termcolor import colored
 import urllib, urllib2
