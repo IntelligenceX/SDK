@@ -51,9 +51,11 @@ def ixphonebook(term):
         #return status code 
         getresults = requests.get(resulturl,headers=headers)
         data = getresults.json()
-        #print data
        
-    else:
+        if data['status'] == 0 or data['status'] == 1: 
+            print data
+            
+        else:
             print "----------------------------------------------"
             print "[!] Error Code Status: <" + str(data['status']) + ">"
             print "----------------------------------------------"
