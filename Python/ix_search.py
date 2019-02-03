@@ -2,7 +2,6 @@
 
 import re,sys,os,time
 import requests
-from requests.exceptions import HTTPError
 import json
 from termcolor import colored
 import urllib, urllib2
@@ -41,10 +40,33 @@ def ix_search(term):
         #Craft API URL with the id to return results
         resulturl = "https://public.intelx.io/intelligent/search/result?id=%s" %str(id_response['id'])
 
-    else:
-        print "----------------------------------------------"
-        print "[!] Error Code Status: <" + str(data['status']) + ">"
-        print "----------------------------------------------"
-        print "Code <2> | Search ID Not Found."
-        print "Code <3> | No Results at this time. Try later."
-        print "----------------------------------------------"
+        getresults = requests.get(resulturl,headers=headers)
+        #print getresults
+        data = getresults.json()
+        
+        if data['status'] == 0 or data['status'] == 1:
+            #print data in json format to manipulate as desired
+            print data
+        else:
+            print "----------------------------------------------"
+            print "[!] Error Code Status: <" + str(data['status']) + ">"
+            print "----------------------------------------------"
+            print "Code <2> | Search ID Not Found."
+            print "Code <3> | No Results at this time. Try later."
+            print "----------------------------------------------"
+
+    if id_response['status'] == 1:
+        print "[!]Invalid term used."
+
+    if id_response['status'] == 2:
+        print "[!] Reached the MAX number of concurrent connection for this API Key."
+    #print id_response['id']
+
+
+if __name__ == "__main__":
+
+    start = time.time()
+    #python ix_search.py <selector>
+    ixsearch(sys.argv[1])
+    end = time.time()
+    print colored("[*] The script executed in [" + str((end-start)) + " seconds|" + str(((end-start)/60)) + " minutes].","blue")
