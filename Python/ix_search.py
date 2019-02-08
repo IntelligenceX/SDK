@@ -7,13 +7,12 @@ from termcolor import colored
 import urllib, urllib2
 
 
-def ix_search(term):
-    searchurl = 'https://public.intelx.io/intelligent/search'
-    
+def ix_search(baseurl,apikey,term):
+
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.52 Safari/536.5",
-        "x-key": "9df61df0-84f7-4dc7-b34c-8ccfb8646ace",
-        "Host": "public.intelx.io",
+        "x-key": apikey,
+        "Host": urlbase,
         "Content-Length": "212"
         }
 
@@ -30,15 +29,15 @@ def ix_search(term):
         "terminate": []
     } 
 
-    
-    getid = requests.post(searchurl,data=json.dumps(payload),headers=headers)
+    searchurl = url + "/intelligent/search"
+    getid = requests.post(str(searchurl),data=json.dumps(payload),headers=headers)
     id_response = getid.json()
 
     #Authenticate to API
     if id_response['status'] == 0:
         print colored("[+]Successful API Authentication. Starting records search.","green")
         #Craft API URL with the id to return results
-        resulturl = "https://public.intelx.io/intelligent/search/result?id=%s" %str(id_response['id'])
+        resulturl = str(searchurl) + "/result?id=%s" %str(id_response['id'])
 
         getresults = requests.get(resulturl,headers=headers)
         #print getresults
@@ -64,9 +63,8 @@ def ix_search(term):
 
 
 if __name__ == "__main__":
+    #https://public.intelx.io/intelligent/search
+    #9df61df0-84f7-4dc7-b34c-8ccfb8646ace
+    #python ix_search.py <baseurl> <apikey> <selector>
+    ixsearch(sys.argv[1],sys.argv[2],sys.argv[3])
 
-    start = time.time()
-    #python ix_search.py <selector>
-    ixsearch(sys.argv[1])
-    end = time.time()
-    print colored("[*] The script executed in [" + str((end-start)) + " seconds|" + str(((end-start)/60)) + " minutes].","blue")
