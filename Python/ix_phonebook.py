@@ -46,7 +46,7 @@ def ixphonebook(term):
     
     if id_response['status'] == 0:
         print colored("[+]Successful API Authentication. Searching available records...","green")
-        resulturl = "https://2.intelx.io/phonebook/search/result?id=%s" %str(id_response['id'])
+        resulturl = "https://public.intelx.io/phonebook/search/result?id=%s" %str(id_response['id'])
         
         #return status code 
         getresults = requests.get(resulturl,headers=headers)
