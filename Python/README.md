@@ -8,7 +8,6 @@
 First, make sure to download the dependencies:
 
 ```
-pip install termcolor
 pip install requests
 ```
 

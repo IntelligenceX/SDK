@@ -1,7 +1,6 @@
 import re,sys,os,time
 import requests
 import json
-from termcolor import colored
 import urllib
 
 
@@ -33,7 +32,7 @@ def ix_search(baseurl,apikey,term):
 
         #Authenticate to API
         if id_response['status'] == 0:
-            print(colored("[+]Successful API Authentication. Starting records search.","green"))
+            print("[+]Successful API Authentication. Starting records search.")
             #Craft API URL with the id to return results
             resulturl = str(searchurl) + "/result?id=%s" %str(id_response['id'])
 

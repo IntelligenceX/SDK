@@ -1,7 +1,6 @@
 import re,sys,os,time
 import requests
 import json
-from termcolor import colored
 import urllib
 from datetime import date
 import datetime
@@ -28,14 +27,14 @@ def ixphonebook(baseurl,apikey,term):
         "terminate": []
     }   
 
-    print(colored("[+] " + str(date.today()) + ": Kicking off phonebook query of " + str(term) + " with max results set at " + str(payload['maxresults']),"red"))
+    print("[+] " + str(date.today()) + ": Kicking off phonebook query of " + str(term) + " with max results set at " + str(payload['maxresults']))
 
     #initial POST to intelligence X service to retrieve the results ID and do all the fun stuff
     getid = requests.post("https://" + baseurl + "/phonebook/search",data=json.dumps(payload),headers=headers)
     id_response = getid.json()
     
     if id_response['status'] == 0:
-        print(colored("[+]Successful API Authentication. Searching available records...","green"))
+        print("[+] Successful API Authentication. Searching available records...")
         resulturl = "https://" + baseurl + "/phonebook/search/result?id=%s" %str(id_response['id'])
         
         status = 3  # status 3 = No results yet, keep trying. 0 = Success with results
@@ -64,4 +63,4 @@ if __name__ == "__main__":
     #python ix_phonebook.py <selector>
     ixphonebook("public.intelx.io","9df61df0-84f7-4dc7-b34c-8ccfb8646ace",sys.argv[1])
     end = time.time()
-    print(colored("[*] The script executed in [" + str((end-start)) + " seconds|" + str(((end-start)/60)) + " minutes].","blue"))
+    print("[*] The script executed in [" + str((end-start)) + " seconds|" + str(((end-start)/60)) + " minutes].")
