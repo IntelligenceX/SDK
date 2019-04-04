@@ -9,7 +9,7 @@ The SDK contains these parts:
 1. [API documentation](Intelligence%20X%20Public%20API.pdf)
 2. [HTML code example](HTML/search.html)
 3. [PHP code example](PHP/index.php)
-4. [Python code example(s)](Python/)
+4. [Python code examples](Python/)
 5. [Go package and code](Go/ixapi/README.md)
 6. [API calls in Fiddler archive](Public%20API%20Examples%20Fiddler.saz)
 
@@ -19,8 +19,11 @@ Instead of directly using the API, you can always do the ghetto version instead 
 
 ```
 https://intelx.io/?s=[search term]
+```
 
 Examples:
+
+```
 https://intelx.io/?s=test.com
 https://intelx.io/?s=test@example.com
 ```
@@ -41,8 +44,13 @@ The search engine supports only the following strong selector types. Anything el
 * Credit card number
 * IBAN
 
+## Credits
+
+Special thanks for their contributions to:
+* Cyberblack for providing the Python code in Q1 2019
+
 ## Contact
 
-For any questions please contact <info@intelx.io>. Feel free to use the issue tracker for any feature requests and bug reports.
+We love contributions! Feel free to use the issue tracker for any feature requests, bug reports and contributions. You can contact us via email <info@intelx.io>.
 
-&copy; 2018 Intelligence X
+&copy; 2018 - 2019 Intelligence X
