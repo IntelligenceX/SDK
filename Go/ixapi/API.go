@@ -23,7 +23,7 @@ import (
 	"strings"
 	"time"
 
-	uuid "forks/go.uuid"
+	"github.com/gofrs/uuid"
 )
 
 const defaultAPIURL = "https://public.intelx.io/"

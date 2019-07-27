@@ -91,17 +91,16 @@ def ix_search(baseurl, apikey, term):
 
 if __name__ == '__main__':
     try:
-        api_url = sys.argv[1]
+        api_domain = sys.argv[1]
         api_key = sys.argv[2]
         selector = sys.argv[3]
     except IndexError:
-        print('usage: python3 ix_search.py <api url> <api key> <search selector>')
+        print('usage: python3 ix_search.py <api domain> <api key> <search selector>')
         sys.exit(0)
 
-    if not validators.domain(api_url):
+    if not validators.domain(api_domain):
         print('[error] invalid API domain provided; exiting ...')
         sys.exit(1)
 
-    # python ix_search.py <selector>
-    ix_search(api_url, api_key, selector)
+    ix_search(api_domain, api_key, selector)
 

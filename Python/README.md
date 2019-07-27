@@ -14,31 +14,19 @@ pip install requests
 Using the Python files is straight forward:
 
 ```shell
-ix_search.py <selector>
-ix_phonebook.py <selector>
+ix_search.py <api domain> <api key> <search selector>
+ix_phonebook.py <api domain> <api key> <search selector>
 ```
 
 Examples:
 
 ```shell
-ix_search.py test.com
-ix_phonebook.py test.com
+ix_search.py public.intelx.io 9df61df0-84f7-4dc7-b34c-8ccfb8646ace test.com
+ix_phonebook.py public.intelx.io 9df61df0-84f7-4dc7-b34c-8ccfb8646ace test.com
 ```
 
 The results are currently displayed as raw JSON data. Contributions for a more user-friendly representation are welcome.
 
-## Notes
+## API Details
 
-If you have an account on intelx.io go to the developer tab at https://intelx.io/account?tab=developer to get your own API key and URL.
-
-In the `ix_search.py` change the default API host and key here:
-
-```python
-ix_search("public.intelx.io","9df61df0-84f7-4dc7-b34c-8ccfb8646ace",sys.argv[1])
-```
-
-The same for `ix_phonebook.py`:
-
-```python
-ixphonebook("public.intelx.io","9df61df0-84f7-4dc7-b34c-8ccfb8646ace",sys.argv[1])
-```
+To use the API you first need an account on intelx.io. Go to the developer tab at https://intelx.io/account?tab=developer to get your own API key and domain.

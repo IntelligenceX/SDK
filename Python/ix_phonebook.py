@@ -58,9 +58,16 @@ def ixphonebook(baseurl,apikey,term):
         print("[!] Reached the MAX number of concurrent connections for this API Key.")
 
 if __name__ == "__main__":
+    try:
+        api_domain = sys.argv[1]
+        api_key = sys.argv[2]
+        selector = sys.argv[3]
+    except IndexError:
+        print('usage: python3 ix_phonebook.py <api domain> <api key> <search selector>')
+        sys.exit(0)
 
-    start = time.time()
-    #python ix_phonebook.py <selector>
-    ixphonebook("public.intelx.io","9df61df0-84f7-4dc7-b34c-8ccfb8646ace",sys.argv[1])
-    end = time.time()
-    print("[*] The script executed in [" + str((end-start)) + " seconds|" + str(((end-start)/60)) + " minutes].")
+    if not validators.domain(api_domain):
+        print('[error] invalid API domain provided; exiting ...')
+        sys.exit(1)
+
+    ixphonebook(api_domain, api_key, selector)
