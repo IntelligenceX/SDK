@@ -114,25 +114,6 @@ type PanelSearchResultTag struct {
 	ValueH string `json:"valueh"` // Value, human friendly
 }
 
-// PanelItemFriend is a human translation of a relationship
-type PanelItemFriend struct {
-	SystemID uuid.UUID              `json:"systemid"` // System identifier uniquely identifying the item
-	Date     time.Time              `json:"date"`     // Full time stamp item when it was discovered or created
-	Name     string                 `json:"name"`     // Name or title
-	Inline   FriendShadowCopyInline `json:"inline"`   // inline shadow copy matching PanelSearchResultData
-}
-
-// FriendShadowCopyInline is an item copy inline
-type FriendShadowCopyInline struct {
-	Item
-	AccessLevelH string                 `json:"accesslevelh"` // Human friendly access level info
-	MediaH       string                 `json:"mediah"`       // Human friendly media type info
-	SimhashH     string                 `json:"simhashh"`     // Human friendly simhash
-	TypeH        string                 `json:"typeh"`        // Human friendly content type info
-	TagsH        []PanelSearchResultTag `json:"tagsh"`        // Human friendly tags
-	BucketH      string                 `json:"bucketh"`      // Human friendly bucket name
-}
-
 // SearchResult represents a single result record. The entire record IS the de-facto result. Every field is optional and may be empty.
 type SearchResult struct {
 	Item
@@ -141,7 +122,6 @@ type SearchResult struct {
 	SimhashH     string                 `json:"simhashh"`     // Human friendly simhash
 	TypeH        string                 `json:"typeh"`        // Human friendly content type info
 	TagsH        []PanelSearchResultTag `json:"tagsh"`        // Human friendly tags
-	Friends      []PanelItemFriend      `json:"friends"`      // Human friendly translated relations
 	RandomID     uuid.UUID              `json:"randomid"`     // Random ID
 	BucketH      string                 `json:"bucketh"`      // Human friendly bucket name
 }
