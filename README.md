@@ -13,6 +13,9 @@ The SDK contains these parts:
 5. [Go package and code](Go/ixapi/README.md)
 6. [API calls in Fiddler archive](Fiddler%20Examples.saz)
 
+Latest updates:
+* 12.04.2020 - Version 2: New Python API wrapper and Command Line Interface
+
 ## Link to intelx.io
 
 Instead of directly using the API, you can always do the ghetto version instead and just link to the website.
@@ -41,16 +44,12 @@ The search engine supports only the following strong selector types. Anything el
 * IPFS Hash
 * UUID
 * Simhash
-* Credit card number
+* Credit Card Number
+* Social Security Number
 * IBAN
-
-## Credits
-
-Special thanks for their contributions to:
-* Cyberblack for providing the Python code in Q1 2019
 
 ## Contact
 
 We love contributions! Feel free to use the issue tracker for any feature requests, bug reports and contributions. You can contact us via email <info@intelx.io>.
 
-&copy; 2018 - 2019 Intelligence X
+&copy; 2018 - 2020 Intelligence X

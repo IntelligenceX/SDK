@@ -1,32 +1,89 @@
-# Intelligence X API Python client
+# IntelX
 
-1. [ix_search.py to search and show results](ix_search.py)
-2. [ix_phonebook.py to make a phonebook lookup](ix_phonebook.py)
+IntelX is a Python command-line utility and API wrapper for intelx.io, made to perform any kind of open-source intelligence.
+
+![](cli/screenshot1.png)
+
+## Installation
+```bash
+git clone https://github.com/IntelligenceX/SDK
+pip3 install SDK/Python
+```
+
+## Setup
+
+To specify the API key to use, you can choose one of two options:
+* Setting the ```INTELX_KEY``` environment variable.
+* Manually supplying the ```-apikey``` argument.
+
+You can get your API key here: https://intelx.io/account?tab=developer
+
+##### Environment Variable
+```bash
+# create an INTELX_KEY env var with your API key.
+export INTELX_KEY=00000000-0000-0000-0000-000000000000
+```
+
+##### Via the client
+
+```bash
+intelx.py -search riseup.net -apikey 00000000-0000-0000-0000-000000000000
+```
+
+## Configuration
+
+On windows, we need to manually configure the command prompt/terminal in order to enable color support. You can do that with the following instructions:
+
+1. Create following file ```Enable Color.reg```
+```
+Windows Registry Editor Version 5.00
+[HKEY_CURRENT_USER\Console]
+"VirtualTerminalLevel"=dword:00000001
+```
+
+2. Right Click ```Enable Color.reg``` -> Merge
 
 ## Usage
 
-First, make sure to download the dependencies:
-
-```
-pip install requests
+```bash
+intelx.py -search riseup.net
 ```
 
-Using the Python files is straight forward:
 
-```shell
-ix_search.py <api domain> <api key> <search selector>
-ix_phonebook.py <api domain> <api key> <search selector>
+#### Quick search
+```bash
+intelx.py -search riseup.net
 ```
 
-Examples:
-
-```shell
-ix_search.py public.intelx.io 9df61df0-84f7-4dc7-b34c-8ccfb8646ace test.com
-ix_phonebook.py public.intelx.io 9df61df0-84f7-4dc7-b34c-8ccfb8646ace test.com
+#### Quick search in buckets
+```bash
+intelx.py -search riseup.net -buckets "pastes, darknet.tor"
 ```
 
-The results are currently displayed as raw JSON data. Contributions for a more user-friendly representation are welcome.
+#### Search with 100 results
+```bash
+intelx.py -search riseup.net -limit 100
+```
 
-## API Details
 
-To use the API you first need an account on intelx.io. Go to the developer tab at https://intelx.io/account?tab=developer to get your own API key and domain.
+#### Download Item
+
+The ```-download``` argument will set the HTTP request type to a stream, ultimately returning the raw bytes.
+This allows us to download documents such as PDFs, ZIP, Word documents, Excel, etc.
+You may set the filename with the ```-name``` argument.
+```bash
+# save item as test.pdf
+intelx.py -download 29a97791-1138-40b3-8cf1-de1764e9d09c -name test.txt
+```
+
+
+#### Search Phonebook
+```bash
+intelx.py -search cia.gov --phonebook
+```
+
+#### Extract email from phonebook search
+```bash
+intelx.py -search cia.gov --phonebook --emails
+```
+
