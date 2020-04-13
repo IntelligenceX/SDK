@@ -71,7 +71,7 @@ def quick_search_results(ix, search, limit):
 			print(f"{BOLD}> Date:{END}", result['date'])
 			print(f"{BOLD}> Size:{END}", result['size'], "bytes")
 			print(f"{BOLD}> Media:{END}", result['mediah'])
-			print(f"{BOLD}> Bucket:{END}", result['bucket'])
+			print(f"{BOLD}> Bucket:{END}", result['bucketh'])
 			print(f"{BOLD}> ID:{END}", result['systemid'])
 			if len(viewtext) > 0:
 				print("")
