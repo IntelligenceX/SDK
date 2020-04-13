@@ -65,7 +65,6 @@ intelx.py -search riseup.net -buckets "pastes, darknet.tor"
 intelx.py -search riseup.net -limit 100
 ```
 
-
 #### Download Item
 
 The ```-download``` argument will set the HTTP request type to a stream, ultimately returning the raw bytes.
@@ -76,6 +75,13 @@ You may set the filename with the ```-name``` argument.
 intelx.py -download 29a97791-1138-40b3-8cf1-de1764e9d09c -name test.txt
 ```
 
+#### View Item
+
+To view the full data of a specific search result, specify the item's ID and use the `--view` parameter:
+
+```bash
+intelx.py -search 3a4d5699-737c-4d22-8dbd-c5391ce805df --view
+```
 
 #### Search Phonebook
 ```bash

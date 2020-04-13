@@ -69,7 +69,7 @@ class intelx:
 		r = requests.get(f"{self.API_ROOT}/file/preview?c={ctype}&m={mediatype}&f={format}&sid={sid}&b={bucket}&e={e}&l={lines}&k={self.API_KEY}")
 		return r.text
 
-	def FILE_VIEW(self, ctype, mediatype, sid, bucket=''):
+	def FILE_VIEW(self, ctype, mediatype, sid, bucket='',escape=0):
 		"""
 		Show a file's contents based on its storageid (sid), convert to text where necessary.
 
@@ -101,7 +101,7 @@ class intelx:
 			format = 0
 		else:
 			format = 1
-		r = requests.get(f"{self.API_ROOT}/file/view?f={format}&storageid={sid}&bucket={bucket}&k={self.API_KEY}")
+		r = requests.get(f"{self.API_ROOT}/file/view?f={format}&storageid={sid}&bucket={bucket}&escape={escape}&k={self.API_KEY}")
 		return r.text
 	
 	def FILE_READ(self, id, type=0, bucket="", filename=""):
