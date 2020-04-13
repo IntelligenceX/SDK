@@ -129,7 +129,6 @@ results = intelx.search('hackerone.com', maxresults=200)
 
 The following arguments have default values, but can be overridden to your choosing:
 
-
 * maxresults=100
 * buckets=[]
 * timeout=5
@@ -235,31 +234,14 @@ from intelx import intelx
 intelx = intelx()
 results = intelx.search('riseup.net')
 
+# use the first result
+result = results['records'][0]
+
 # grab file contents of first search result
-contents = intelx.FILE_VIEW(search['records'][0]['storageid'])
+contents = intelx.FILE_VIEW(result['type'], result['media'], result['storageid'], result['bucket'])
 
 print(contents)
 ```
-
-It is worth noting that the view function accepts a `format` argument, which allows us to view the file in a different format.
-
-For example, if we have a binary file and want to get a hex dump of it, we can set the format argument to 1.
-
-See Format Types for more.
-
-```python
-from intelx import intelx
-
-intelx = intelx()
-results = intelx.search('riseup.net')
-
-# grab file contents of first search result
-contents = intelx.FILE_VIEW(search['records'][0]['storageid'], format=1)
-
-print(contents)
-```
-
-For other format types, please refer to Media Types.
 
 #### Reading
 
@@ -272,7 +254,7 @@ intelx = intelx()
 results = intelx.search('riseup.net')
 
 # save the first search result file as "file.txt"
-intelx.FILE_READ(search['records'][0]['storageid'], name="file.txt")
+intelx.FILE_READ(results['records'][0]['systemid'], 0, results['records'][0]['bucket'], "file.txt")
 ```
 
 ### Other Notes
