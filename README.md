@@ -11,7 +11,6 @@ The SDK contains these parts:
 3. [PHP code example](PHP/index.php)
 4. [Python code examples](Python/)
 5. [Go package and code](Go/ixapi/README.md)
-6. [API calls in Fiddler archive](Fiddler%20Examples.saz)
 
 Latest updates:
 * 12.04.2020 - Version 2: New Python API wrapper and Command Line Interface

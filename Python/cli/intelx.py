@@ -109,7 +109,6 @@ if __name__ == '__main__':
 	parser.add_argument('-dateto', help="begin search ending from date")
 	parser.add_argument('-sort', help="set the sort value")
 	parser.add_argument('-media', help="set the media value")
-	parser.add_argument('-terminate', help="set the search IDs to terminate")
 	parser.add_argument('-lines', help="set the number of lines displayed in the preview")
 	parser.add_argument('-download', help="download the specified item specified by its ID")
 	parser.add_argument('-name', help="set the filename to save the item as")
@@ -170,8 +169,6 @@ if __name__ == '__main__':
 			sort = int(args.sort)
 		if args.media:
 			media = int(args.media)
-		if args.terminate:
-			terminate = format_list(args.terminate)
 
 		if not args.phonebook:
 			search = search(

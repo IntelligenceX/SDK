@@ -13,11 +13,11 @@ class intelx:
 	API_KEY  = ''
 
 	# If an API key isn't supplied, it will use the free API key (limited functionality)
-	def __init__(self, key="9df61df0-84f7-4dc7-b34c-8ccfb8646ace"):
+	def __init__(self, key="01a61412-7629-4288-b18a-b287266f2798"):
 		"""
 		Initialize API by setting the API key.
 		"""
-		if key == "9df61df0-84f7-4dc7-b34c-8ccfb8646ace":
+		if key == "01a61412-7629-4288-b18a-b287266f2798":
 			self.API_ROOT 	= "https://public.intelx.io"
 		else:
 			self.API_ROOT 	= "https://2.intelx.io"
