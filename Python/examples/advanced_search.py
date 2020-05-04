@@ -9,7 +9,7 @@ def get_pastes(target):
     print(f"Found {record_count} records for {target} in bucket 'pastes'")
 
 def get_leaks(target):
-    search = intelx.search(target, buckets=['leaks'], maxresults=2000)
+    search = intelx.search(target, buckets=['leaks.public','leaks.private'], maxresults=2000)
     record_count = len(search['records'])
     print(f"Found {record_count} records for {target} in bucket 'leaks'")
 

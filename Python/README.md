@@ -147,13 +147,15 @@ To search a for a term within specific buckets (leaks & darknet), you can use th
 ```python
 from intelx import intelx
 
-b = ['darknet', 'leaks']
+b = ['darknet', 'leaks.public', 'leaks.private']
 
 intelx = intelx('00000000-0000-0000-0000-000000000000')
 results = intelx.search('hackerone.com', maxresults=200, buckets=b)
 ```
 
 `results` contains the search results.
+
+Note that your account must have access to all specified buckets, otherwise you will receive the HTTP status code `401 Unauthorized`. The "leaks.private" bucket is only available to certain licenses.
 
 #### Filtering by Date
 
