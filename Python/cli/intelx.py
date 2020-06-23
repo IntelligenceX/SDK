@@ -39,10 +39,10 @@ def search(ix, query, maxresults=100, buckets=[], timeout=5, datefrom="", dateto
 	s = ix.search(args.search, maxresults, buckets, timeout, datefrom, dateto, sort, media, terminate)
 	return s
 
-def pbsearch(ix, query, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[]):
+def pbsearch(ix, query, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], target=0):
 	if not args.raw:
 		print(colored(f"[{rightnow()}] Starting phonebook search of \"{args.search}\".", 'green'))
-	s = ix.phonebooksearch(args.search, maxresults, buckets, timeout, datefrom, dateto, sort, media, terminate)
+	s = ix.phonebooksearch(args.search, maxresults, buckets, timeout, datefrom, dateto, sort, media, terminate, target)
 	return s
 
 def get_stats(stats):
@@ -114,7 +114,7 @@ if __name__ == '__main__':
 	parser.add_argument('-name', help="set the filename to save the item as")
 	parser.add_argument('--nopreview', help="do not show text preview snippets of search results", action="store_true")
 	parser.add_argument('--view', help="show full contents of search results", action="store_true")
-	parser.add_argument('--phonebook', help="set the search type to a phonebook search", action="store_true")
+	parser.add_argument('--phonebook', help="set the search type to a phonebook search")
 	parser.add_argument('--emails', help="show only emails from phonebook results", action="store_true")
 	parser.add_argument('--capabilities', help="show your account's capabilities", action="store_true")
 	parser.add_argument('--stats', help="show stats of search results", action="store_true")
@@ -184,6 +184,14 @@ if __name__ == '__main__':
 				terminate=terminate
 			)
 		elif args.phonebook:
+			if(args.phonebook == 'domains'):
+				targetval = 1
+			elif(args.phonebook == 'emails'):
+				targetval = 2
+			elif(args.phonebook == 'urls'):
+				targetval = 3
+			else:
+				targetval = 0
 			search = pbsearch(
 				ix,
 				args.search,
@@ -194,7 +202,8 @@ if __name__ == '__main__':
 				dateto=dateto,
 				sort=sort,
 				media=media,
-				terminate=terminate
+				terminate=terminate,
+				target=targetval
 			)
 
 		if args.raw:

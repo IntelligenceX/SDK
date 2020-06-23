@@ -17,7 +17,7 @@ class intelx:
 		"""
 		Initialize API by setting the API key.
 		"""
-		if key == "01a61412-7629-4288-b18a-b287266f2798":
+		if key == "01a61412-7629-4288-b18a-b287266f2798" or key == "ac572eea-3902-4e9a-972d-f5996d76174c":
 			self.API_ROOT 	= "https://public.intelx.io"
 		else:
 			self.API_ROOT 	= "https://2.intelx.io"
@@ -342,7 +342,7 @@ class intelx:
 		else:
 			return r.status_code()
 	
-	def PHONEBOOK_SEARCH(self, term, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[]):
+	def PHONEBOOK_SEARCH(self, term, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], target=0):
 		"""
 		Initialize a phonebook search and return the ID of the task/search for further processing
 		"""
@@ -357,7 +357,8 @@ class intelx:
 			"dateto": dateto,
 			"sort": sort,
 			"media": media,
-			"terminate": terminate
+			"terminate": terminate,
+			"target": target
 		}
 		r = requests.post(self.API_ROOT + '/phonebook/search', headers=h, json=p)
 		if r.status_code == 200:
@@ -501,14 +502,14 @@ class intelx:
 				done = True
 		return {'records': results}
 
-	def phonebooksearch(self, term, maxresults=1000, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[]):
+	def phonebooksearch(self, term, maxresults=1000, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], target=0):
 		"""
 		Conduct a phonebook search based on a search term.
 		Other arguments have default values set, however they can be overridden to complete an advanced search.
 		"""
 		results = []
 		done = False
-		search_id = self.PHONEBOOK_SEARCH(term, maxresults, buckets, timeout, datefrom, dateto, sort, media, terminate)
+		search_id = self.PHONEBOOK_SEARCH(term, maxresults, buckets, timeout, datefrom, dateto, sort, media, terminate, target)
 		if(len(str(search_id)) <= 3):
 			 print(f"[!] intelx.PHONEBOOK_SEARCH() Received {self.get_error(search_id)}")
 			 sys.exit()
