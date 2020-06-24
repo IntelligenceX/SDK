@@ -14,6 +14,9 @@ The SDK contains these parts:
 
 Latest updates:
 * 12.04.2020 - Version 2: New Python API wrapper and Command Line Interface
+* 24.06.2020 - Version 3: Additional filter for phonebook.cz like lookups in Python code
+
+You will need an API key which you can obtain at https://intelx.io/account?tab=developer. Please note that integration into your commercial service/product requires a paid license.
 
 ## Link to intelx.io
 
@@ -50,5 +53,7 @@ The search engine supports only the following strong selector types. Anything el
 ## Contact
 
 We love contributions! Feel free to use the issue tracker for any feature requests, bug reports and contributions. You can contact us via email <info@intelx.io>.
+
+The Terms of Service https://intelx.io/terms-of-service apply.
 
 &copy; 2018 - 2020 Intelligence X
