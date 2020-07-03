@@ -1,0 +1,10 @@
+<MaltegoEntity id="intelx.simhash" displayName="Similarity Hash" displayNamePlural="Similarity Hashs" description="Similarity Hash" category="My Entities" smallIconResource="Technology/ClusterOrange" largeIconResource="Technology/ClusterOrange" allowedRoot="true" conversionOrder="2147483647" visible="true">
+   <Properties value="simhash" displayValue="simhash">
+      <Groups/>
+      <Fields>
+         <Field name="simhash" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="Similarity Hash">
+            <SampleValue>8862bd5ea6ebb7b4</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>

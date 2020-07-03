@@ -1,0 +1,24 @@
+<MaltegoServer name="Local" enabled="true" description="Local transforms hosted on this machine" url="http://localhost">
+   <LastSync>2020-06-18 12:17:16.110 CDT</LastSync>
+   <Protocol version="0.0"/>
+   <Authentication type="none"/>
+   <Transforms>
+      <Transform name="intelx.searchiban"/>
+      <Transform name="intelx.searchcreditcard"/>
+      <Transform name="intelx.searchstorageid"/>
+      <Transform name="intelx.searchsystemid"/>
+      <Transform name="intelx.ixurls"/>
+      <Transform name="intelx.searchsimhash"/>
+      <Transform name="intelx.searchuuid"/>
+      <Transform name="intelx.ixemails"/>
+      <Transform name="intelx.ixsubdomains"/>
+      <Transform name="intelx.fetchsearchresult"/>
+      <Transform name="intelx.searchdomain"/>
+      <Transform name="intelx.searchip"/>
+      <Transform name="intelx.searchemail"/>
+      <Transform name="intelx.searchurl"/>
+      <Transform name="intelx.searchmac"/>
+      <Transform name="intelx.searchbtc"/>
+   </Transforms>
+   <Seeds/>
+</MaltegoServer>

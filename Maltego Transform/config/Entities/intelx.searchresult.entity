@@ -1,0 +1,22 @@
+<MaltegoEntity id="intelx.searchresult" displayName="Intelligence X Search Result" displayNamePlural="Intelligence X Search Results" description="Intelligence X Search Result" category="My Entities" smallIconResource="General/InfoMessage" largeIconResource="General/InfoMessage" allowedRoot="true" conversionOrder="2147483647" visible="true">
+   <Properties value="properties.intelligencexsearchresult" displayValue="properties.intelligencexsearchresult">
+      <Groups/>
+      <Fields>
+         <Field name="properties.intelligencexsearchresult" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="Intelligence X Search Result">
+            <SampleValue>-</SampleValue>
+         </Field>
+         <Field name="SID" type="string" nullable="true" hidden="false" readonly="false" description="">
+            <SampleValue></SampleValue>
+         </Field>
+         <Field name="Type" type="string" nullable="true" hidden="false" readonly="false" description="">
+            <SampleValue></SampleValue>
+         </Field>
+         <Field name="Media" type="string" nullable="true" hidden="false" readonly="false" description="">
+            <SampleValue></SampleValue>
+         </Field>
+         <Field name="Bucket" type="string" nullable="true" hidden="false" readonly="false" description="">
+            <SampleValue></SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>

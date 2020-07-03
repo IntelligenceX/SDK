@@ -1,0 +1,10 @@
+<MaltegoEntity id="intelx.macaddress" displayName="MAC Address" displayNamePlural="MAC Addresses" description="MAC Address" category="My Entities" smallIconResource="Technology/Server" largeIconResource="Technology/Server" allowedRoot="true" conversionOrder="2147483647" visible="true">
+   <Properties value="Address" displayValue="Address">
+      <Groups/>
+      <Fields>
+         <Field name="Address" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="MAC Address">
+            <SampleValue>00:0a:95:9d:68:16</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>

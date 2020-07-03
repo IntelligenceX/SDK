@@ -1,0 +1,10 @@
+<MaltegoEntity id="intelx.uuid" displayName="UUID" displayNamePlural="UUIDs" description="UUID" category="My Entities" smallIconResource="Technology/Assemble" largeIconResource="Technology/Assemble" allowedRoot="true" conversionOrder="2147483647" visible="true">
+   <Properties value="uuid" displayValue="uuid">
+      <Groups/>
+      <Fields>
+         <Field name="uuid" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="UUID">
+            <SampleValue>4aa13aa1e2b8488f6f747e2591c3e89964dce960eecb4dec60b9c282cca74eb99e8230a0ecebc8e9bc2eadc0aebb8ff2f22c20240a8a0797301935b60d5dd3cf</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>

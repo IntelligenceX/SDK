@@ -1,0 +1,10 @@
+<MaltegoEntity id="intelx.btcaddress" displayName="Bitcoin Address" displayNamePlural="Bitcoin Addresses" description="Bitcoin address" category="My Entities" smallIconResource="General/Savings" largeIconResource="General/Savings" allowedRoot="true" conversionOrder="2147483647" visible="true">
+   <Properties value="Address" displayValue="Address">
+      <Groups/>
+      <Fields>
+         <Field name="Address" type="string" nullable="true" hidden="false" readonly="false" description="Bitcoin address" displayName="Bitcoin Address">
+            <SampleValue>1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>

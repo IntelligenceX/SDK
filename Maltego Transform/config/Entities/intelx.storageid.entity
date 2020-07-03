@@ -1,0 +1,10 @@
+<MaltegoEntity id="intelx.storageid" displayName="Storage ID" displayNamePlural="Storage IDs" description="Storage ID" category="My Entities" smallIconResource="Technology/Assemble" largeIconResource="Technology/Assemble" allowedRoot="true" conversionOrder="2147483647" visible="true">
+   <Properties value="storageid" displayValue="storageid">
+      <Groups/>
+      <Fields>
+         <Field name="storageid" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="Storage ID">
+            <SampleValue>95f1919e23e01ac445c3b2da94f449377f2cbdc57789ad004adab8c6d8f3c786b7951a372ec47d3bc79e718c6dbe4f366dd2d9e9cc1b6756c00b697456ac7e35</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>

@@ -1,0 +1,10 @@
+<MaltegoEntity id="intelx.systemid" displayName="System ID" displayNamePlural="System IDs" description="System ID" category="My Entities" smallIconResource="Technology/Assemble" largeIconResource="Technology/Assemble" allowedRoot="true" conversionOrder="2147483647" visible="true">
+   <Properties value="systemid" displayValue="systemid">
+      <Groups/>
+      <Fields>
+         <Field name="systemid" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="System ID">
+            <SampleValue>5e38b6aa-97e6-41e0-8121-38d65cbff7fe</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>
