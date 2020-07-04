@@ -21,7 +21,9 @@ Maltego Transforms for Intelligence X (intelx.io). The following transforms and 
 * Intelligence X System ID Entity
 * Intelligence X UUID Entity
 
-## Installation
+## Manual Installation
+
+This transform is currently not in the Transform Hub marketplace. Follow the instructions below to install it manually.
 
 **NOTES**: 
 
@@ -33,7 +35,7 @@ Maltego Transforms for Intelligence X (intelx.io). The following transforms and 
 * [intelx-0.4](https://github.com/IntelligenceX/SDK/tree/master/Python) (included in the instructions below)
 * [maltego-trx](https://github.com/paterva/maltego-trx) (it will be automatically installed)
 * [python \>= 3](https://www.python.org/)
-* [An Intelligence X API Key](https://intelx.io/product)
+* [An Intelligence X API Key](https://intelx.io/account?tab=developer)
 
 While the installation procedure is relatively straightforward, there are a few fundamental differences between Linux / Windows. Mainly, the location of the Python executable. The first step, is to ensure intelx-0.4 and maltego-trx are a part of your Python environment.
 
