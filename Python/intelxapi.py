@@ -342,7 +342,7 @@ class intelx:
 		if(r.status_code == 200):
 			return True
 		else:
-			return r.status_code()
+			return r.status_code
 	
 	def PHONEBOOK_SEARCH(self, term, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], target=0):
 		"""
@@ -502,7 +502,8 @@ class intelx:
 			maxresults -= len(r['records'])
 			if(r['status'] == 1 or r['status'] == 2 or maxresults <= 0):
 				done = True
-		return {'records': results}
+		
+		return {'records': results}, search_id
 
 	def phonebooksearch(self, term, maxresults=1000, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], target=0):
 		"""
