@@ -11,9 +11,10 @@ class intelx:
 	# API_ROOT = 'https://public.intelx.io'
 	API_ROOT = ''
 	API_KEY  = ''
+	USER_AGENT = ''
 
 	# If an API key isn't supplied, it will use the free API key (limited functionality)
-	def __init__(self, key="01a61412-7629-4288-b18a-b287266f2798"):
+	def __init__(self, key="01a61412-7629-4288-b18a-b287266f2798", ua='IX-Python/0.5'):
 		"""
 		Initialize API by setting the API key.
 		"""
@@ -23,6 +24,7 @@ class intelx:
 			self.API_ROOT 	= "https://2.intelx.io"
 
 		self.API_KEY = key
+		self.USER_AGENT = ua
 
 	def get_error(self, code):
 		"""
@@ -55,7 +57,7 @@ class intelx:
 		"""
 		Return a JSON object with the current user's API capabilities
 		"""
-		h = {'x-key' : self.API_KEY}
+		h = {'x-key' : self.API_KEY, 'User-Agent': self.USER_AGENT}
 		r = requests.get(f"{self.API_ROOT}/authenticate/info", headers=h)
 		return r.json()
 
@@ -122,7 +124,7 @@ class intelx:
 		name option:
 		- Specify the name to save the file as (e.g document.pdf).
 		"""
-		h = {'x-key' : self.API_KEY}
+		h = {'x-key' : self.API_KEY, 'User-Agent': self.USER_AGENT}
 		r = requests.get(f"{self.API_ROOT}/file/read?type={type}&systemid={id}&bucket={bucket}", headers=h, stream=True)
 		with open(f"{filename}", "wb") as f:
 			f.write(r.content)
@@ -223,7 +225,7 @@ class intelx:
 
 		Soft selectors (generic terms) are not supported!
 		"""
-		h = {'x-key' : self.API_KEY}
+		h = {'x-key' : self.API_KEY, 'User-Agent': self.USER_AGENT}
 		p = {
 			"term": term,
 			"buckets": buckets,
@@ -324,7 +326,7 @@ class intelx:
 		- Identifiers of related items
 
 		"""
-		h = {'x-key' : self.API_KEY}
+		h = {'x-key' : self.API_KEY, 'User-Agent': self.USER_AGENT}
 		r = requests.get(self.API_ROOT + f'/intelligent/search/result?id={id}&limit={limit}', headers=h)
 		if(r.status_code == 200):
 			return r.json()
@@ -335,7 +337,7 @@ class intelx:
 		"""
 		Terminate a previously initialized search based on its UUID.
 		"""
-		h = {'x-key' : self.API_KEY}
+		h = {'x-key' : self.API_KEY, 'User-Agent': self.USER_AGENT}
 		r = requests.get(self.API_ROOT + f'/intelligent/search/terminate?id={uuid}', headers=h)
 		if(r.status_code == 200):
 			return True
@@ -346,7 +348,7 @@ class intelx:
 		"""
 		Initialize a phonebook search and return the ID of the task/search for further processing
 		"""
-		h = {'x-key' : self.API_KEY}
+		h = {'x-key' : self.API_KEY, 'User-Agent': self.USER_AGENT}
 		p = {
 			"term": term,
 			"buckets": buckets,
@@ -379,7 +381,7 @@ class intelx:
 		- 2: Search ID not found.
 		- 3: No results yet, but keep trying.
 		"""
-		h = {'x-key' : self.API_KEY}
+		h = {'x-key' : self.API_KEY, 'User-Agent': self.USER_AGENT}
 		r = requests.get(self.API_ROOT + f'/phonebook/search/result?id={id}&limit={limit}&offset={offset}', headers=h)
 		if(r.status_code == 200):
 			return r.json()
