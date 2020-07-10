@@ -501,6 +501,8 @@ class intelx:
 				results.append(a)
 			maxresults -= len(r['records'])
 			if(r['status'] == 1 or r['status'] == 2 or maxresults <= 0):
+				if(maxresults <= 0):
+					self.INTEL_TERMINATE_SEARCH(search_id)
 				done = True
 		return {'records': results}
 
@@ -521,6 +523,8 @@ class intelx:
 			results.append(r)
 			maxresults -= len(r['selectors'])
 			if(r['status'] == 1 or r['status'] == 2 or maxresults <= 0):
+				if(maxresults <= 0):
+					self.INTEL_TERMINATE_SEARCH(search_id)
 				done = True
 		return results
 
