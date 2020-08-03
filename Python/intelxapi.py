@@ -8,21 +8,16 @@ import re
 
 class intelx:
 
-	# API_ROOT = 'https://public.intelx.io'
-	API_ROOT = ''
+	API_ROOT = 'https://2.intelx.io'
 	API_KEY  = ''
 	USER_AGENT = ''
 
-	# If an API key isn't supplied, it will use the free API key (limited functionality)
-	def __init__(self, key="01a61412-7629-4288-b18a-b287266f2798", ua='IX-Python/0.5'):
+	# The API key must be always supplied
+	def __init__(self, key, ua='IX-Python/0.5'):
 		"""
 		Initialize API by setting the API key.
 		"""
-		if key == "01a61412-7629-4288-b18a-b287266f2798" or key == "ac572eea-3902-4e9a-972d-f5996d76174c":
-			self.API_ROOT 	= "https://public.intelx.io"
-		else:
-			self.API_ROOT 	= "https://2.intelx.io"
-
+		self.API_ROOT 	= "https://2.intelx.io"
 		self.API_KEY = key
 		self.USER_AGENT = ua
 

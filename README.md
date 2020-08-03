@@ -18,7 +18,7 @@ Latest updates:
 * 24.06.2020 - Version 3: Additional filter for [phonebook.cz](https://phonebook.cz) like lookups in Python code
 * 04.07.2020 - Version 4: New Maltego Transform
 
-You will need an API key which you can obtain at https://intelx.io/account?tab=developer. Please note that integration into your commercial service/product requires a paid license.
+You will need an API key which you can obtain at https://intelx.io/account?tab=developer. Please note that integration into your commercial service/product requires a paid license. If your product is open source, do not embed your API key. The use of public API keys is discontinued.
 
 ## Link to intelx.io
 

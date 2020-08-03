@@ -5,7 +5,7 @@ Author:     Peter Kleissner
 Version:    1 from 11/19/2018
 
 API client code for using the Intelligence X API. Create an IntelligenceXAPI object and call Init first.
-
+You must set your API key.
 */
 
 package ixapi
@@ -26,8 +26,8 @@ import (
 	"github.com/gofrs/uuid"
 )
 
-const defaultAPIURL = "https://public.intelx.io/"
-const publicAPIKey = "9df61df0-84f7-4dc7-b34c-8ccfb8646ace"
+const defaultAPIURL = "https://2.intelx.io/"
+const publicAPIKey = "00000000-0000-0000-0000-000000000000"
 
 // IntelligenceXAPI holds all information for communicating with the Intelligence X API.
 // Call Init() first.

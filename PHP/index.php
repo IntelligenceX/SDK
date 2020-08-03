@@ -33,8 +33,8 @@ $term = filter_input(INPUT_GET, 'searchField');
 <?php
 if ('' != $term):
 	$api = new searchAPI();
-	$api->setApiKey('9df61df0-84f7-4dc7-b34c-8ccfb8646ace');
-	$api->setApiUrl('https://public.intelx.io/');
+	$api->setApiKey('00000000-0000-0000-0000-000000000000'); // change the API key here
+	$api->setApiUrl('https://2.intelx.io/');
 	$request = new IntelligentSearchRequest($api);
 	$request->search($term);
 	foreach ($request->getResults($term) as $record): ?>
