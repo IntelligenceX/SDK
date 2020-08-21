@@ -531,3 +531,7 @@ class intelx:
 			else:
 				stats[record['bucket']] += 1
 		return json.dumps(stats)
+
+	def selectors(self, document):
+		r = requests.get(self.API_ROOT + f'/item/selector/list/human?id={document}&k={self.API_KEY}')
+		return r.json()['selectors']

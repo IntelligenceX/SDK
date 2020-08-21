@@ -129,7 +129,8 @@ if __name__ == '__main__':
 		ix = intelx(args.apikey)
 
 	else:
-		ix = intelx()
+		print('No API key specified. Please use the "-apikey" parameter or set the environment variable "INTELX_KEY".')
+		exit()
 
 	# main application flow
 	if not args.raw:

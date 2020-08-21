@@ -1,6 +1,6 @@
-# IntelX
+# intelx.py (0.5)
 
-IntelX is a Python command-line utility and API wrapper for intelx.io, made to perform any kind of open-source intelligence.
+intelx.py is a Python command-line utility and API wrapper for intelx.io, made to perform any kind of open-source intelligence.
 
 ![](cli/screenshot1.png)
 
@@ -99,7 +99,7 @@ intelx.py -search cia.gov --phonebook --emails
 To use IntelX it as a library, all you have to do is import it in your project, and initialize the class. If you supply an API key, it will use that, if not, it will automatically select the public API key (limited functionality).
 
 ```python
-from intelx import intelx
+from intelxapi import intelx
 intelx = intelx()
 ```
 
@@ -110,7 +110,7 @@ Once you have done that, you can use any of the functions defined in the class.
 To execute a quick search, we can easily just use the `intelx.search()` function.
 
 ```python
-from intelx import intelx
+from intelxapi import intelx
 
 intelx = intelx('00000000-0000-0000-0000-000000000000')
 results = intelx.search('hackerone.com')
@@ -121,7 +121,7 @@ results = intelx.search('hackerone.com')
 By default, the `maxresults` limit is set to 100 to avoid unnecessarily overloading the system. This value can be overridden at any time by setting the maxresults argument. Note that server side limitations might be still enforced by the API.
 
 ```python
-from intelx import intelx
+from intelxapi import intelx
 
 intelx = intelx('00000000-0000-0000-0000-000000000000')
 results = intelx.search('hackerone.com', maxresults=200)
@@ -145,7 +145,7 @@ Timeout is in seconds.
 To search a for a term within specific buckets (leaks & darknet), you can use the following sample code:
 
 ```python
-from intelx import intelx
+from intelxapi import intelx
 
 b = ['darknet', 'leaks.public', 'leaks.private']
 
@@ -162,7 +162,7 @@ Note that your account must have access to all specified buckets, otherwise you 
 Results can be filterede by date. When setting the `dateto` and `datefrom` options, both must be specified. The times have to be included.
 
 ```python
-from intelx import intelx
+from intelxapi import intelx
 
 startdate = "2014-01-01 00:00:00"
 enddate = "2014-02-02 23:59:59"
@@ -186,7 +186,7 @@ Using the following script, we can filter paste documents dated between 2014-01-
 You can find a table below with all the media types and their respective IDs.
 
 ```python
-from intelx import intelx
+from intelxapi import intelx
 
 media_type = 1 # Paste document
 startdate = "2014-01-01 00:00:00"
@@ -208,7 +208,7 @@ results = intelx.search(
 To collect statistics, use the following code:
 
 ```python
-from intelx import intelx
+from intelxapi import intelx
 
 intelx = intelx('00000000-0000-0000-0000-000000000000')
 
@@ -231,7 +231,7 @@ This means if the resource is a ZIP/Binary or any other type of file, you can re
 #### Viewing
 
 ```python
-from intelx import intelx
+from intelxapi import intelx
 
 intelx = intelx()
 results = intelx.search('riseup.net')
@@ -250,7 +250,7 @@ print(contents)
 To download/read a file's raw data, use the `FILE_READ` function. The file in the below example will be saved as `file.txt`.
 
 ```python
-from intelx import intelx
+from intelxapi import intelx
 
 intelx = intelx()
 results = intelx.search('riseup.net')
