@@ -16,7 +16,7 @@ class ixsubdomains(DiscoverableTransform):
                 settings = json.loads(contents)
                 key = settings['APIKEY']
                 h.close()
-            intelx = intelxapi.intelx(key, ua='IX Maltego Transform/2')
+            intelx = intelxapi.intelx(key, ua='IX Maltego Transform/3')
             results = intelx.phonebooksearch(domain_name, target=1)
             for selector in results:
                 for result in selector['selectors']:

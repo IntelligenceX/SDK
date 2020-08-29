@@ -1,4 +1,4 @@
-# intelx-maltego
+# intelx-maltego v3
 
 Maltego Transforms for Intelligence X (intelx.io). The following transforms and entities will be installed.
 
@@ -9,6 +9,7 @@ Maltego Transforms for Intelligence X (intelx.io). The following transforms and 
 * Intelligence X URLs Transform
 * Intelligence X Subdomains Transform
 * Intelligence X Search Result Transform
+* Intelligence X Selectors Transform
 
 #### Entities
 
@@ -32,7 +33,7 @@ This transform is currently not in the Transform Hub marketplace. Follow the ins
 
 ### Requirements
 
-* [intelx-0.4](https://github.com/IntelligenceX/SDK/tree/master/Python) (included in the instructions below)
+* [intelx-0.5](https://github.com/IntelligenceX/SDK/tree/master/Python) (included in the instructions below)
 * [maltego-trx](https://github.com/paterva/maltego-trx) (it will be automatically installed)
 * [python \>= 3](https://www.python.org/)
 * [An Intelligence X API Key](https://intelx.io/account?tab=developer)
@@ -47,7 +48,8 @@ pip install ./SDK/Python
 Next, the folder will be copied and the requirements will be installed:
 
 ```
-copy "./SDK/Maltego Transform" C:\intelx-maltego
+mkdir C:\intelx-maltego
+xcopy /E "./SDK/Maltego Transform" C:\intelx-maltego\
 cd C:\intelx-maltego
 pip install -r requirements.txt
 ```

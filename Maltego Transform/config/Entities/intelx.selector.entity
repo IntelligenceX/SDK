@@ -1,0 +1,10 @@
+<MaltegoEntity id="intelx.selector" displayName="Selector" displayNamePlural="Selectors" description="Intelligence X Selector" category="My Entities" smallIconResource="General/QuestionDialog" largeIconResource="General/QuestionDialog" allowedRoot="true" conversionOrder="2147483647" visible="true">
+   <Properties value="properties.selector" displayValue="properties.selector">
+      <Groups/>
+      <Fields>
+         <Field name="properties.selector" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="Selector">
+            <SampleValue>-</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>
