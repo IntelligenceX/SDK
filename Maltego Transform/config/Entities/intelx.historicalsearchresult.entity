@@ -1,0 +1,10 @@
+<MaltegoEntity id="intelx.historicalsearchresult" displayName="Intelligence X Historical Result" displayNamePlural="Intelligence X Historical Results" description="Historical search result returned from Intelligence X" category="My Entities" smallIconResource="Technology/Link" largeIconResource="Technology/Link" allowedRoot="true" conversionOrder="2147483647" visible="true">
+   <Properties value="properties.intelligencexhistoricalresult" displayValue="properties.intelligencexhistoricalresult">
+      <Groups/>
+      <Fields>
+         <Field name="properties.intelligencexhistoricalresult" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="Intelligence X Historical Result">
+            <SampleValue>-</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>

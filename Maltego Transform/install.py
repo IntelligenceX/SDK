@@ -38,9 +38,29 @@ config = {
         'propval': f'{cwd}/project.py local ixsearch'
     },
 
+    'history': {
+        'filename': 'intelx.history.transformsettings',
+        'propval': f'{cwd}/project.py local ixhistory'
+    },
+
     'fetchsearchresult': {
         'filename': 'intelx.fetchsearchresult.transformsettings',
         'propval': f'{cwd}/project.py local ixsearchresult'
+    },
+
+    'fetchhistoricalsearchresult': {
+        'filename': 'intelx.fetchhistoricalsearchresult.transformsettings',
+        'propval': f'{cwd}/project.py local ixsearchresult'
+    },
+
+    'treeview': {
+        'filename': 'intelx.treeview.transformsettings',
+        'propval': f'{cwd}/project.py local ixtreeview'
+    },
+
+    'leaktreeview': {
+        'filename': 'intelx.leaktreeview.transformsettings',
+        'propval': f'{cwd}/project.py local ixtreeview'
     },
 
     'searchip': {
@@ -85,6 +105,11 @@ config = {
 
     'searchiban': {
         'filename': 'intelx.searchiban.transformsettings',
+        'propval': f'{cwd}/project.py local ixsearch' 
+    },
+
+    'searchleak': {
+        'filename': 'intelx.searchleak.transformsettings',
         'propval': f'{cwd}/project.py local ixsearch' 
     },
 

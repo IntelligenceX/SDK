@@ -13,6 +13,7 @@
       <Transform name="intelx.ixemails"/>
       <Transform name="intelx.ixsubdomains"/>
       <Transform name="intelx.fetchsearchresult"/>
+      <Transform name="intelx.fetchhistoricalsearchresult"/>
       <Transform name="intelx.searchdomain"/>
       <Transform name="intelx.searchip"/>
       <Transform name="intelx.searchemail"/>
@@ -21,6 +22,10 @@
       <Transform name="intelx.searchbtc"/>
       <Transform name="intelx.ixselectors"/>
       <Transform name="intelx.searchselector"/>
+      <Transform name="intelx.history"/>
+      <Transform name="intelx.treeview"/>
+      <Transform name="intelx.leaktreeview"/>
+      <Transform name="intelx.searchleak"/>
    </Transforms>
    <Seeds/>
 </MaltegoServer>

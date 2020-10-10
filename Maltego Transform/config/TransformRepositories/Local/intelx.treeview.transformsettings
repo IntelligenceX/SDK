@@ -1,0 +1,8 @@
+<TransformSettings enabled="true" disclaimerAccepted="false" showHelp="true" runWithAll="true" favorite="false">
+   <Properties>
+      <Property name="transform.local.command" type="string" popup="false">PYTHONEXEC</Property>
+      <Property name="transform.local.parameters" type="string" popup="false">COMMANDLINE</Property>
+      <Property name="transform.local.working-directory" type="string" popup="false">WORKINGDIR</Property>
+      <Property name="transform.local.debug" type="boolean" popup="false">true</Property>
+   </Properties>
+</TransformSettings>

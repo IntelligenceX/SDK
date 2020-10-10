@@ -1,0 +1,10 @@
+<MaltegoEntity id="intelx.leak" displayName="Intelligence X Leak" displayNamePlural="Intelligence X Leaks" description="Leak document from Intelligence X" category="My Entities" smallIconResource="General/OilSpill" largeIconResource="General/OilSpill" allowedRoot="true" conversionOrder="2147483647" visible="true">
+   <Properties value="properties.intelligencexleak" displayValue="properties.intelligencexleak">
+      <Groups/>
+      <Fields>
+         <Field name="properties.intelligencexleak" type="string" nullable="true" hidden="false" readonly="false" description="" displayName="Intelligence X Leak">
+            <SampleValue>-</SampleValue>
+         </Field>
+      </Fields>
+   </Properties>
+</MaltegoEntity>

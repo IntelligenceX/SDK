@@ -1,4 +1,4 @@
-# intelx-maltego v3
+# intelx-maltego v4
 
 Maltego Transforms for Intelligence X (intelx.io). The following transforms and entities will be installed.
 
@@ -10,6 +10,8 @@ Maltego Transforms for Intelligence X (intelx.io). The following transforms and 
 * Intelligence X Subdomains Transform
 * Intelligence X Search Result Transform
 * Intelligence X Selectors Transform
+* Intelligence X History Transform
+* Intelligence X Treeview Transform
 
 #### Entities
 
@@ -21,6 +23,10 @@ Maltego Transforms for Intelligence X (intelx.io). The following transforms and 
 * Intelligence X Storage ID Entity
 * Intelligence X System ID Entity
 * Intelligence X UUID Entity
+* Intelligence X Selector Entity
+* Intelligence X Leak Entity
+* Intelligence X Search Result Entity
+* Intelligence X Historical Search Result Entity
 
 ## Manual Installation
 
