@@ -17,5 +17,5 @@ setup(name='intelx',
       url='https://github.com/IntelligenceX/SDK/Python',
       packages=['.'],
       scripts=['cli/intelx.py'],
-      install_requires=['requests', 'pygments', 'termcolor', 'tabulate']
+      install_requires=['requests==2.26.0', 'Pygments==2.10.0', 'termcolor==1.1.0', 'tabulate==0.8.9']
      )
