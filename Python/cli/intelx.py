@@ -224,7 +224,6 @@ if __name__ == '__main__':
                 print()
                 pb_search_results(ix, search)
 
-
     if args.download:
         fname = args.download + ".bin"
         if args.name:
