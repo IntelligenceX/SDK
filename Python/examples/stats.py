@@ -9,3 +9,4 @@ search = intelx.search(
 
 stats = intelx.stats(search)
 print(stats)
+
