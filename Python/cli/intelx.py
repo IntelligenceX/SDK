@@ -30,8 +30,10 @@ banner = r'''
 
 '''.format(BOLD, END)
 
+
 def rightnow():
     return time.strftime("%H:%M:%S")
+
 
 def search(ix, query, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[]):
     if not args.raw:
@@ -39,11 +41,13 @@ def search(ix, query, maxresults=100, buckets=[], timeout=5, datefrom="", dateto
     s = ix.search(args.search, maxresults, buckets, timeout, datefrom, dateto, sort, media, terminate)
     return s
 
+
 def pbsearch(ix, query, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], target=0):
     if not args.raw:
         print(colored(f"[{rightnow()}] Starting phonebook search of \"{args.search}\".", 'green'))
     s = ix.phonebooksearch(args.search, maxresults, buckets, timeout, datefrom, dateto, sort, media, terminate, target)
     return s
+
 
 def get_stats(stats):
     if not args.raw:
@@ -51,9 +55,11 @@ def get_stats(stats):
         stats = json.dumps(ix.stats(search), indent=4, sort_keys=True)
         print(stats)
 
+
 def format_list(content):
     content = content.replace(" ", "")
     return content.split(",")
+
 
 def quick_search_results(ix, search, limit):
     for idx, result in enumerate(search['records']):
@@ -78,6 +84,7 @@ def quick_search_results(ix, search, limit):
                 print(viewtext)
             print(f"{BOLD}________________________________________________________________________________{END}")
 
+
 def pb_search_results(ix, search):
     headers = ["Type", "Value"]
     data = []
@@ -85,6 +92,7 @@ def pb_search_results(ix, search):
         for result in block['selectors']:
             data.append([result['selectortypeh'], result['selectorvalue']])
     print(tabulate.tabulate(sorted(data), headers=headers, tablefmt="fancy_grid"))
+
 
 def pb_search_results_emails(ix, search):
     for block in search:

@@ -6,6 +6,7 @@ import json
 import sys
 import re
 
+
 class intelx:
 
     API_ROOT = 'https://2.intelx.io'
