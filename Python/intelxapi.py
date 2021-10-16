@@ -504,7 +504,7 @@ class intelx:
              print(f"[!] intelx.INTEL_SEARCH() Received {self.get_error(search_id)}")
              sys.exit()
         while done == False:
-            time.sleep(1) # lets give the backend a chance to aggregate our data
+            time.sleep(1)  # lets give the backend a chance to aggregate our data
             r = self.query_results(search_id, maxresults)
             for a in r['records']:
                 results.append(a)
@@ -527,7 +527,7 @@ class intelx:
              print(f"[!] intelx.PHONEBOOK_SEARCH() Received {self.get_error(search_id)}")
              sys.exit()
         while done == False:
-            time.sleep(1) # lets give the backend a chance to aggregate our data
+            time.sleep(1)  # lets give the backend a chance to aggregate our data
             r = self.query_pb_results(search_id, maxresults)
             results.append(r)
             maxresults -= len(r['selectors'])

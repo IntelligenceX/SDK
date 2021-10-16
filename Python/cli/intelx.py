@@ -173,7 +173,7 @@ if __name__ == '__main__':
             datefrom = args.datefrom
         if args.dateto:
             dateto = args.dateto
-            sort = 2 # sort by date
+            sort = 2  # sort by date
         if args.sort:
             sort = int(args.sort)
         if args.media:
