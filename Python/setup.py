@@ -19,4 +19,3 @@ setup(name='intelx',
       scripts=['cli/intelx.py'],
       install_requires=['requests', 'pygments', 'termcolor', 'tabulate']
      )
-
