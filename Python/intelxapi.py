@@ -48,7 +48,7 @@ class intelx:
             if '<a href' not in line:
                 lines.append(line)
         return lines
-    
+
     def GET_CAPABILITIES(self):
         """
         Return a JSON object with the current user's API capabilities
@@ -101,7 +101,7 @@ class intelx:
             format = 1
         r = requests.get(f"{self.API_ROOT}/file/view?f={format}&storageid={sid}&bucket={bucket}&escape={escape}&k={self.API_KEY}")
         return r.text
-    
+
     def FILE_READ(self, id, type=0, bucket="", filename=""):
         """
         Read a file's raw contents. Use this for direct data download.
@@ -339,7 +339,7 @@ class intelx:
             return True
         else:
             return r.status_code
-    
+
     def PHONEBOOK_SEARCH(self, term, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], target=0):
         """
         Initialize a phonebook search and return the ID of the task/search for further processing
@@ -417,7 +417,7 @@ class intelx:
         """
         Conduct a simple search based on a search term.
         Other arguments have default values set, however they can be overridden to complete an advanced search.
-        
+
         maxresults option:
         - Tells how many results to query maximum per bucket.
         - Example: maxresults=100
@@ -495,7 +495,7 @@ class intelx:
         - IBAN
 
         Soft selectors (generic terms) are not supported!
-        
+
         """
         results = []
         done = False
