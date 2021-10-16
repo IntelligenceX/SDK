@@ -21,6 +21,7 @@ def get_darknet(target):
     record_count = len(search['records'])
     print(f"Found {record_count} records for {target} in bucket 'darknet'")
 
+
 if __name__ == '__main__':
     get_leaks(target)
     get_pastes(target)

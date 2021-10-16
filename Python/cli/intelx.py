@@ -100,6 +100,7 @@ def pb_search_results_emails(ix, search):
             if result['selectortype'] == 1:
                 print(result['selectorvalue'])
 
+
 if __name__ == '__main__':
 
     # get the argument parser ready
