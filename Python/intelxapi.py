@@ -10,7 +10,7 @@ import re
 class intelx:
 
     API_ROOT = 'https://2.intelx.io'
-    API_KEY  = ''
+    API_KEY = ''
     USER_AGENT = ''
 
     # The API key must be always supplied
@@ -18,7 +18,7 @@ class intelx:
         """
         Initialize API by setting the API key.
         """
-        self.API_ROOT     = "https://2.intelx.io"
+        self.API_ROOT = "https://2.intelx.io"
         self.API_KEY = key
         self.USER_AGENT = ua
 
