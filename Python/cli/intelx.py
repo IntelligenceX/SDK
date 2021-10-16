@@ -154,14 +154,14 @@ if __name__ == '__main__':
                 print(colored(f"[{rightnow()}] Limit argument not supplied, setting default to 10 results.", 'yellow'))
             args.limit = 10
 
-        maxresults=100
-        buckets=[]
-        timeout=5
-        datefrom=""
-        dateto=""
-        sort=4
-        media=0
-        terminate=[]
+        maxresults = 100
+        buckets = []
+        timeout = 5
+        datefrom = ""
+        dateto = ""
+        sort = 4
+        media = 0
+        terminate = []
 
         if args.limit:
             maxresults = int(args.limit)

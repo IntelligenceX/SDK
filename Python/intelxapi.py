@@ -83,19 +83,19 @@ class intelx:
         - 8: text view of word file
         """
         format = 0
-        if(mediatype==23 or mediatype==9):    # HTML
+        if(mediatype == 23 or mediatype == 9):    # HTML
             format = 7
-        elif(mediatype==15):                # PDF
+        elif(mediatype == 15):                # PDF
             format = 6
-        elif(mediatype==16):                # Word
+        elif(mediatype == 16):                # Word
             format = 8
-        elif(mediatype==18):                # PowerPoint
+        elif(mediatype == 18):                # PowerPoint
             format = 10
-        elif(mediatype==25):                # Ebook
+        elif(mediatype == 25):                # Ebook
             format = 11
-        elif(mediatype==17):                # Excel
+        elif(mediatype == 17):                # Excel
             format = 9
-        elif(ctype==1):                        # Text
+        elif(ctype == 1):                        # Text
             format = 0
         else:
             format = 1
