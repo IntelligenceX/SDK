@@ -1,6 +1,6 @@
 name: 'PyUp Safety'
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   security:
