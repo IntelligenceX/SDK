@@ -1,6 +1,11 @@
 name: 'PyUp Safety'
 
-on: [push, pull_request]
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '* * 3 * *'
 
 jobs:
   security:
