@@ -8,4 +8,3 @@ search = intelx.search('riseup.net')
 
 for record in search['records']:
     print(f"Found media type {record['media']} in {record['bucket']}")
-
