@@ -120,6 +120,7 @@ if __name__ == '__main__':
     parser.add_argument('-media', help="set the media value")
     parser.add_argument('-lines', help="set the number of lines displayed in the preview")
     parser.add_argument('-download', help="download the specified item specified by its ID")
+    parser.add_argument('-bucket', help="download from this bucket (must be specified with -download)")
     parser.add_argument('-name', help="set the filename to save the item as")
     parser.add_argument('--nopreview', help="do not show text preview snippets of search results", action="store_true")
     parser.add_argument('--view', help="show full contents of search results", action="store_true")
@@ -234,13 +235,16 @@ if __name__ == '__main__':
                 pb_search_results(ix, search)
 
     if args.download:
-        fname = args.download + ".bin"
-        if args.name:
-            fname = args.name
-        if(ix.FILE_READ(args.download, filename=fname)):
-            print(colored(f"[{rightnow()}] Successfully downloaded the file '{fname}'.\n", 'green'))
+        if not args.bucket:
+            print(colored(f"[{rightnow()}] Failed to download item {args.download} missing bucket name.\n", 'red'))
         else:
-            print(colored(f"[{rightnow()}] Failed to download item {args.download}.\n", 'red'))
+            fname = args.download + ".bin"
+            if args.name:
+                fname = args.name
+            if(ix.FILE_READ(args.download, bucket=args.bucket, filename=fname)):
+                print(colored(f"[{rightnow()}] Successfully downloaded the file '{fname}'.\n", 'green'))
+            else:
+                print(colored(f"[{rightnow()}] Failed to download item {args.download}.\n", 'red'))
 
     if args.capabilities:
         print(colored(f"[{rightnow()}] Getting your API capabilities.\n", 'green'))

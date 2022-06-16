@@ -115,7 +115,7 @@ class intelx:
         - 1: Content disposition. May fix line endings to CR LF for text files.
 
         bucket option:
-        - Optional bucket value.
+        - Bucket is required.
 
         name option:
         - Specify the name to save the file as (e.g document.pdf).
