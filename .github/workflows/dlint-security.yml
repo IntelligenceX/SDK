@@ -15,7 +15,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         cd ./Python
-        python3 setup.py install
+        python3 -m build 
         pip3 freeze > requirements.txt
         pip3 install dlint
         python3 -m flake8 --select=DUO ./Python
