@@ -1,0 +1,23 @@
+[project]
+name = "intelx"
+version = "0.0.5"
+authors = [
+  { name="Kleissner Investments s.r.o./ Dominik Penner", email="info@intelx.io" },
+]
+description = "IntelX is a Python command-line utility and API wrapper for intelx.io, made to perform any kind of open-source intelligence."
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/IntelligenceX/SDK/tree/master/Python"
+"Bug Tracker" = "https://github.com/IntelligenceX/SDK/issues"
+
+[build-system]
+requires = ["setuptools>=61.0",'requests','pygments','termcolor','tabulate'] 
+build-backend = "setuptools.build_meta"
