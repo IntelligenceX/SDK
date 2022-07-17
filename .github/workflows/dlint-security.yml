@@ -13,7 +13,7 @@ jobs:
         python-version: 3.9
     - name: Run Dlint from Duo
       run: |
-        python -m pip install --upgrade pip
+        python -m pip install --upgrade pip build
         cd ./Python
         python3 -m build 
         pip3 freeze > requirements.txt
