@@ -23,6 +23,7 @@ jobs:
           export PYTHONIOENCODING=utf-8
           
           python3 -m pip install --upgrade pip
+          pip3 install --upgrade setuptools
           pip3 install build
           cd ./Python
           python3 -m build
