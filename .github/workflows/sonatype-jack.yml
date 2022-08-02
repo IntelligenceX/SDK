@@ -1,0 +1,33 @@
+name: 'Sonatype Jake'
+
+on: [ push ]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '3.6.x', '3.10.x' ]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run jake from Sonatype
+        run: |
+          # needed for Python3.6
+          export PYTHONIOENCODING=utf-8
+          
+          python3 -m pip install --upgrade pip
+          pip3 install build
+          cd ./Python
+          python3 -m build
+          python3 setup.py install
+          pip3 freeze > requirements.txt
+          
+          pip3 install jake
+          jake ddt
