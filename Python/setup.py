@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import setuptools
+from setuptools import setup, find_packages
 from distutils.core import setup
 from os import path
 here = path.abspath(path.dirname(__file__))
@@ -15,7 +15,7 @@ setup(name='intelx',
       author_email='info@intelx.io',
       keywords='intelx intelligence x intelx.io _IntelligenceX IntelligenceX _intelx',
       url='https://github.com/IntelligenceX/SDK/Python',
-      packages=['.'],
+      packages=find_packages(),
       scripts=['cli/intelx.py'],
       install_requires=['requests', 'pygments', 'termcolor', 'tabulate']
       )
