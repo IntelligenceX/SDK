@@ -29,4 +29,4 @@ jobs:
           pipenv lock -r > requirements.txt
           
           pipenv install --dev jake
-          pipenv run jake ddt
+          pipenv run jake ddt --whitelist jake-whitelist.json
