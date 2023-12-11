@@ -1,6 +1,5 @@
 name: 'PyUp Safety'
 
-
 on:
   push:
   pull_request:
