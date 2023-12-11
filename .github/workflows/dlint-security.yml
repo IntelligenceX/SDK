@@ -1,4 +1,8 @@
-on: [push]
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '* * 3 * *'
 
 jobs:
   security_checks:
