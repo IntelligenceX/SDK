@@ -1,3 +1,5 @@
+name: 'Duo Dlint'
+
 on:
   push:
   pull_request:
