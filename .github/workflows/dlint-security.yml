@@ -7,7 +7,7 @@ on:
 jobs:
   security_checks:
     # runs-on: ubuntu-latest
-    runs-on: ubuntu-20.04
+    runs-on: Ubuntu 22.04
     name: Execute the Duo Dlint action
     steps:
     - uses: actions/checkout@v2
