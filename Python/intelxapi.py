@@ -400,18 +400,20 @@ class intelx:
         results = self.PHONEBOOK_SEARCH_RESULT(id, limit)
         return results
 
-    def treeview(self, id):
+    def treeview(self, id, bucket):
         """
         Fetch Tree View for an item. Result is JSON array of items, input is the storage ID of the tree view data.
           a. Historical copies of websites. Use the storage ID from the field "historyfile" in the search result.
           b. List of indexed sub-pages for a given website. Use the storage ID from the field "indexfile" in the search result.
         """
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
-        r = requests.get(self.API_ROOT + f'/file/view?f=13&storageid={id}', headers=h)
+        r = requests.get(self.API_ROOT + f'/file/view?f=13&storageid={id}&bucket={bucket}', headers=h)
+        
         if(r.status_code == 200):
             return r.json()
         else:
             return r.status_code
+            
 
     def search(self, term, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[]):
         """
