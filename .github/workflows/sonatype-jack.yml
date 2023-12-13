@@ -19,14 +19,12 @@ jobs:
 
       - name: Run jake from Sonatype
         run: |
-          # needed for Python3.6
-          export PYTHONIOENCODING=utf-8
           
           cd ./Python
           pip3 install pipenv
           pipenv install --dev build
           pipenv install -e .
-          pipenv lock -r > requirements.txt
+          pipenv run pip freeze > requirements.txt
           
           pipenv install --dev jake
           pipenv run jake ddt --whitelist jake-whitelist.json
