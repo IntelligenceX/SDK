@@ -2,6 +2,9 @@ name: 'Sonatype Jake'
 
 on: [ push ]
 
+ENV:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true
+
 jobs:
   security:
     runs-on: ubuntu-latest
