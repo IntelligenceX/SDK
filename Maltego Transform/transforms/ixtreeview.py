@@ -4,6 +4,8 @@ from maltego_trx.entities import URL
 
 from maltego_trx.transform import DiscoverableTransform
 
+import traceback
+
 
 class ixtreeview(DiscoverableTransform):
     @classmethod
@@ -17,7 +19,7 @@ class ixtreeview(DiscoverableTransform):
                 key = settings['APIKEY']
                 h.close()
             intelx = intelxapi.intelx(key, ua='IX Maltego Transform/3')
-            history = intelx.treeview(str(request.getProperty("Indexfile")))
+            history = intelx.treeview(str(request.getProperty("Indexfile")), str(request.getProperty("Bucket")))
             for entry in history:
                 entity = response.addEntity('intelx.searchresult', entry['name'])
                 entity.addProperty('SID', 'SID', 'loose', entry['systemid'])
