@@ -7,6 +7,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='intelx',
+      python_requires=">=3.7"
       version='0.5',
       description='IntelX is a Python command-line utility and API wrapper for intelx.io, made to perform any kind of open-source intelligence.',
       long_description=long_description,
