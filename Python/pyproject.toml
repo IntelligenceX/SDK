@@ -26,3 +26,6 @@ dependencies = [
 [build-system]
 requires = ["setuptools>=61.0",'requests','pygments','termcolor','tabulate'] 
 build-backend = "setuptools.build_meta"
+
+[project.scripts]
+intelx-cli = "intelx:cli/intelx.py"
