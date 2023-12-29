@@ -20,9 +20,8 @@ jobs:
         python-version: 3.11.7
     - name: Run safety from PyUp
       run: |
-        python3 -m pip install --upgrade build
         cd ./Python
-        python3 -m build
+        pip3 install -e .
         pip3 freeze > requirements.txt
         pip3 install safety
         safety check -r requirements.txt
