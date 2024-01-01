@@ -111,4 +111,4 @@ Maltego is a trademark owned by Maltego Technologies GmbH.
 
 The Terms of Service https://intelx.io/terms-of-service apply.
 
-&copy; 2020 Intelligence X
+&copy; 2020 - 2024 Intelligence X
