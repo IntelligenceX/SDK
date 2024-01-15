@@ -69,10 +69,11 @@ intelx.py -search riseup.net -limit 100
 
 The `-download` argument will set the HTTP request type to a stream, ultimately returning the raw bytes.
 This allows us to download documents such as PDFs, ZIP, Word documents, Excel, etc.
+The `-bucket` argument is also required.
 You may set the filename with the `-name` argument.
 ```bash
 # save item as test.pdf
-intelx.py -download 29a97791-1138-40b3-8cf1-de1764e9d09c -name test.txt
+intelx.py -download 29a97791-1138-40b3-8cf1-de1764e9d09c -bucket leaks.private.general -name test.txt
 ```
 
 #### View Item
