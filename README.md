@@ -9,7 +9,7 @@ The SDK contains these parts:
 1. [API documentation](Intelligence%20X%20API.pdf)
 2. [HTML code example](HTML/search.html)
 3. [PHP code example](PHP/index.php)
-4. [Python code examples](Python/)
+4. [Python code examples](Python/examples)
 5. [Go package and code](Go/ixapi/README.md)
 6. [Maltego Transform](Maltego%20Transform/README.md)
 
@@ -17,6 +17,7 @@ Latest updates:
 * 12.04.2020 - Version 2: New Python API wrapper and Command Line Interface
 * 24.06.2020 - Version 3: Additional filter for [phonebook.cz](https://phonebook.cz) like lookups in Python code
 * 04.07.2020 - Version 4: New Maltego Transform
+* 02.02.2023 - Version 5: Python Package moved to [Python Repository](https://github.com/IntelligenceX/Python)
 
 You will need an API key which you can obtain at https://intelx.io/account?tab=developer. Please note that integration into your commercial service/product requires a paid license. If your product is open source, do not embed your API key. The use of public API keys is discontinued.
 
