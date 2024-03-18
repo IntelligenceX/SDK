@@ -1,0 +1,677 @@
+openapi: 3.0.2
+info:    
+  title: IntelligenceX
+  description: >
+    Intelligence X is a search engine and data archive for open source intelligence. 
+    <br/><br/>The Search API performs searches based on selectors and retrieves the results. Only HTTP GET and POST requests are used. Payload data is usually JSON encoded. 
+    <br/><br/> [Privacy Policy](https://intelx.io/privacy-policy)
+  version: "5.0"
+  termsOfService: https://intelx.io/terms-of-service
+  contact:  
+    name: "Intelligent X"
+    url: "https://intelx.io/"
+    email: "info@intelx.io"
+  license:
+    name: "License and Price"
+    url: "https://intelx.io/product"
+  
+servers: 
+  - url: https://2.intelx.io #"Unsure if this is the same for everyone"
+
+paths: 
+  /intelligent/search:
+    post:
+      tags:
+      - Intelligent Search 
+      summary: "Submits a search request for a selector"
+      description: "Submits a search request for a selector by sending a request body containing the search parameters."
+      operationId: IntelligentSearch 
+      requestBody: 
+        $ref: '#/components/requestBodies/JSON_IntelligentSearchRequest'
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json: 
+              schema:
+                $ref: '#/components/schemas/IntelligentSearchRequestResponse'
+        400: 
+          description: "Invalid JSON or Syntax"
+        401: 
+          description: "The API key does not have access to the specified bucket."
+        402:
+          description: "Payment Required. All credits have been used."
+      
+  /intelligent/search/result:
+    get:
+      tags: 
+      - Intelligent Search
+      summary: "Returns selected results"
+      description: "Returns the actual results (items) based on a given search ID. Human text fields are HTML escaped."
+      operationId: IntelligentSearchResults
+      parameters:
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/previewlines'
+      responses: 
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/IntelligentSearchResult'
+              examples:
+                No content:
+                  summary: "Response indicating no more results are available"
+                  value: 
+                    records: []
+                    status: 1
+                Example 1: 
+                  $ref: '#components/examples/IntelligentSearchRequestResponse_Example'
+
+        400:
+          description: Invalid Search ID
+          content:
+            text/plain: 
+              schema:
+                type: string
+                example: Invalid Search ID
+
+
+
+  /intelligent/search/terminate:
+    get:
+      tags:
+      - Intelligent Search 
+      summary: "Terminates a search"
+      description: "Terminates a search based on the search ID. If a search is already terminated, nothing happens."
+      operationId: IntelligentSearchTerminate
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses: 
+        204: #In my testing, a successful response gives a 204 instead of 200#
+          description: Request processed successfully and no content will be sent. 
+        400:
+          description: Invalid Search ID
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Invalid Search ID
+
+
+  /phonebook/search: 
+    post: 
+      tags:
+      - Phonebook Search
+      summary: "Submits a phonebook alike search"
+      description: ""
+      operationId: PhonebookSearch
+      requestBody: 
+        $ref: '#/components/requestBodies/JSON_IntelligentSearchRequest'
+      responses:
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntelligentSearchRequestResponse'
+        400:
+          description: Invalid Input
+
+  
+  /phonebook/search/result: # response seems to be different from Intelligent/search/results endpoint. To be re-documented with more details. #
+    get:
+      tags:
+      - Phonebook Search
+      summary: "Returns selected phonebook results"
+      description: "Returns the actual phonebook results based on a given search ID. Human text files are HTML escaped. "
+      operationId: PhonebookSearchResult
+      parameters:
+        - $ref: '#/components/parameters/id'
+        
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses: 
+        200:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/IntelligentSearchResult'
+              examples:
+                No content:
+                  summary: "Response indicating no more results are available"
+                  value: 
+                    records: []
+                    status: 1
+                Example 1: 
+                  $ref: '#components/examples/IntelligentSearchRequestResponse_Example'
+  /file/read:
+    get:
+      tags:
+      - File 
+      summary: "Reads an item's data."
+      description: #for the config setting FileReadMax, is this an optional parameter? I'm not too sure what the instructions are to use this. #>
+        Reads an item's data. Can be used for direct data download. The max download size is limited by the config setting FileReadMax. <br/><br/> 
+      operationId: FileRead
+      parameters:
+        - $ref: '#/components/parameters/type'
+        - $ref: '#/components/parameters/storageid'
+        - $ref: '#/components/parameters/systemid'
+        - $ref: '#/components/parameters/bucket'
+        - $ref: '#/components/parameters/name'
+      responses:
+        200:
+          description: "Data as payload according to the type"
+        400:
+          description: "Invalid Input"
+        404:
+          description: "Item not found"
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Document not found
+
+        204:
+          description: "Item unavailable and downloading done with Content-Disposition set to (type 1)"
+  
+
+  /file/view:
+    get:
+      tags:
+      - File 
+      summary: "Reads an item's data for a detailed inline view"
+      description:
+      operationId: FileView
+      parameters:
+        - $ref: '#/components/parameters/format'
+        - $ref: '#/components/parameters/storageid'
+        - $ref: '#/components/parameters/bucket'
+      responses:
+        200:
+          description: "Data as payload according to the type"
+        400: 
+          description: "Invalid Input"
+        404:
+          description: "Item not found"
+  
+
+  /file/preview:
+    get:
+      tags:
+      - File 
+      summary: "Reads an item's data for preview"
+      description: "Reads an item's data for preview in a specified format. <br/><br/> If there are problems with reading, processing or encoding the data, a generic text or picture will be returned, informing the user about the problem. "
+      operationId: FilePreview
+      parameters:
+        - $ref: '#/components/parameters/c'
+        - $ref: '#/components/parameters/m'
+        - $ref: '#/components/parameters/targetformat'
+        - $ref: '#/components/parameters/sid'
+        - $ref: '#/components/parameters/b'
+        - $ref: '#/components/parameters/e'
+      responses:
+        200:
+          description: "Data as payload according to the type"
+        400:
+          description: "Invalid Input"
+  
+
+
+security:
+  - app_id: []
+tags: 
+  - name: "Intelligent Search"
+    description: "Search for results using selectors and retrieving the results"
+  - name: "Phonebook Search"  
+    description: "Search for a strong selector given an input domain" #may need a better description. #
+  - name: "File"
+    description: "Read or preview item data"
+
+externalDocs:
+  description: "Software Development Kit (SDK) and reference documents"
+  url: "https://github.com/IntelligenceX/SDK"
+
+components: 
+  
+  parameters: #listed by query parameters first. all numbers are classed as int32 #
+    id:
+      name: id
+      in: query
+      description: The search ID
+      required: true
+      schema:
+        type: string
+
+    offset:
+      name: offset
+      in: query
+      description: "Used to get items from a specific place in the search results. It is recommended to leave this parameter unused."
+      schema:
+        type: integer
+        format: int32
+    
+    limit:
+      name: limit
+      in: query
+      description: "Sets a limit on the number of items returned with the call."
+      schema: 
+        type: integer
+        format: int32
+        default: 100
+
+    previewlines: #unsure how this works. #
+      name: previewlines
+      in: query
+      description: ""
+      schema: 
+        type: integer
+        format: int32
+    
+    type:
+      name: type
+      in: query
+      description: >
+        Indicates the download type. <br/><br/> Values:
+          * 0 - Raw binary
+          * 1 - Raw binary with content disposition. Optional file naming is enabled through the `name` parameter. In the response, the "Content-Type" header will be set to "application/octet-stream" and the "Content-Disposition" header will be set to a filename.
+      required: true
+      schema:
+        type: integer
+        format: int32
+        enum: [0,1]
+
+    storageid:
+      name: storageid
+      description: >
+        Used to read the actual data of the item. Recommended for Type 0 (raw binary files) as it is faster. **Note**: Either the Storage ID or the item's System ID must be specified. 
+      in: query
+      schema:
+        type: string
+    
+    systemid: #I'm not sure what the item lookup requirement means or how to use it. Is this an optional parameter?#
+      name: systemid
+      description: >
+        The unique identifier of the item. If the System ID is provided and the item indicates text as media type, line endings will be sanitized to 'CR LF'. 
+        By using this field, an item lookup is required. 
+        <br/><br/>**Note**: Either the Storage ID or the item's System ID must be specified. 
+      in: query
+      schema: 
+        type: string
+
+    bucket:
+      name: bucket
+      description: The bucket (data category) in which the result was found. Must be the same as the source item. A non-exhaustive list of buckets can be found [here](https://blog.intelx.io/2022/05/05/list-of-buckets/).
+      in: query
+      required: true
+      schema:
+        type: string
+
+    format:
+      name: f
+      in: query
+      description: >
+        Format of data type. <br/><br/>Values:
+          * 0 - Text view, any non-printable characters shall be removed, UTF-8 encoding
+          * 1 - Hex view of data.
+          * 2 - Auto-detect hex view or text view.
+          * 3 - Picture view.
+          * 5 - HTML inline view. Content will be sanitized and modified.
+          * 6 - Text view of PDF. Content will be automatically converted.
+          * 7 - Text view of HTML.
+          * 8 - Text view of Word files (DOC/DOCX/RTF).
+      schema:
+        type: integer
+        format: int32
+        enum: [0,1,2,3,5,6,7,8]
+    
+    targetformat: 
+      name: f
+      description: >
+        Targetted format of the data. Values: 
+          * 0 - Text
+          * 1 - Picture
+      in: query
+      schema:
+        type: integer
+        format: int32
+        enum: [0,1]
+    c: # unsure of values available etc#
+      name: c
+      in: query
+      description: "Indicates the content type. This parameter must be the same as the source item."
+      schema:
+    
+    m: # unsure of values available etc #
+      name: m
+      in: query
+      description: "Indicates the Media type. This parameter must be the same as the source item."
+      schema: 
+    
+    e: #didn't specify the schema as default to be safe (dependent on it being a text output) #
+      name: e
+      in: query
+      description: "Enables HTML escaping of text when specified as true. Only available for text outputs. By default, the value is true."
+      schema:
+        type: boolean
+
+    l: #didn't specify the schema as default to be safe (dependent on it being a text output) #
+      name: l
+      in: query
+      description: "Specifies the maximum number of lines to return. Applicable for text only. Default value: 12"
+      schema:
+        type: integer
+        format: int32
+
+    b:
+      name: b
+      in: query
+      description: The bucket (data category) in which the result was found. Must be the same as the source item. A non-exhaustive list of buckets can be found [here](https://blog.intelx.io/2022/05/05/list-of-buckets/).
+      schema: 
+        type: string
+    name:
+      name: name
+      in: query
+      description: >
+        Sets the file name. If left unspecified, the file will be named in the following format: "[System ID].bin" or "[Storage ID].bin"  <br/><br/>  **Note**:Requires the download `type` to be set as 1.
+      schema:
+        type: string
+    sid:
+      name: sid
+      in: query
+      description: >
+        Storage ID. Used to read the actual data of the item. Must be the same as the source item. 
+      schema: 
+        type: string
+
+
+  requestBodies: 
+    JSON_IntelligentSearchRequest:
+      description: "A JSON object containing search parameters"
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/IntelligentSearchRequest'
+
+  schemas: 
+    IntelligentSearchRequest:
+      title: IntelligentSearchRequest
+      type: object
+      properties:
+        term:
+          type: string
+          description: "The search term you want to look up. Must be a strong selector. The selector types currently supported are: <br/><br/>(Email address, Domain, including wildcards like *.example.com, URL, IPv4 and IPv6, CIDRv4 and CIDRv6, Phone Number, Bitcoin address, MAC address, IPFS Hash, UUID, Storage ID, System ID, Simhash, Credit card number, IBAN)"
+          example: "test.com"
+        buckets:
+          type: array
+          items:
+            type: string
+            description: Specifies the list of buckets (data categories) to search in. More than one can be specified as a list. If none is specified, the system searches in all buckets available to your API key. A non-exhaustive list can be found [here](https://blog.intelx.io/2022/05/05/list-of-buckets/).
+            example: "web.public.com" 
+        lookuplevel:
+          type: integer
+          format: int32
+          description: "This field should be left as 0"
+          default: 0
+        maxresults:
+          type: integer
+          format: int32
+          description: "Sets the maximum limit for the number of results returned from each queried bucket. The total amount of returned results might thus be larger than the value indicated in this field."
+          example: 1000
+        timeout:
+          type: integer 
+          format: int32
+          description: In seconds. Indicates the amount of time given before the search is terminated.
+          default: 0
+        datefrom:
+          type: string 
+          description: "Filters the search parameters from this date. If this field is being used, the `dateto` field value must also be specified."
+        dateto:
+          type: string
+          description: "Filters the search parameters up till this date. If this field is being used, the `datefrom` field value must also be specified."
+        sort:
+          $ref: '#/components/schemas/sort'
+        media:
+          $ref: '#/components/schemas/media'
+        terminate:
+          type: array
+          items:
+              type: string
+              description: Stops previous searches based on the search ID(s) supplied in this field. Helps to free system resources if the previous searches are no longer required. Multiple search IDs can be included as a list. 
+              example:  
+                "d57897e8-9333-4ed9-8a00-55bcdcf97fab"
+              
+
+
+    IntelligentSearchRequestResponse:
+      title: IntelligentSearchRequestResponse
+      type: object
+      properties:
+        id: 
+          type: string 
+          description: "Search ID"
+          example: "61202067-543e-4e6a-8c23-11f9b8f008cf"
+        softselectorwarning: 
+          type: boolean
+          description: "Will be set to TRUE if unsupported soft selectors or generic terms have been used in the request body"
+          example: false
+        status: 
+          type: integer
+          format: int32
+          description: >
+            Indicates condition of the search requested. Values:
+              * 0 - Success, search ID is valid
+              * 1 - Invalid term
+              * 2 - Error, the maximum number of concurrent searches have been reached by the API key. 
+          example: 0
+          
+
+
+    sort: 
+      type: integer
+      format: int32
+      description: >
+        Indicates the order for the results to be shown. <br/><br/>Values:
+          * 0 - No sorting
+          * 1 - X-Score ASC/ Least relevant items first
+          * 2 - X-Score DESC/ Most relevant items first
+          * 3 - Date ASC/ Oldest items first
+          * 4 - Date DESC/ Newest items first
+      enum: [0,1,2,3,4]
+
+    media: #values 10-12 are omitted#
+      type: integer
+      format: int32
+      description: >
+        Specifies the high-level data type. 
+          * 0 - Not set/ Invalid
+          * 1 - Paste Document
+          * 2 - Paste User
+          * 3 - Forum
+          * 4 - Forum Board
+          * 5 - Forum Thread
+          * 6 - Forum Post
+          * 7 - Forum User
+          * 8 - Screenshot of a Website
+          * 9 - HTML copy of a Website
+          * 13 - Tweet
+          * 14 - URL, high-level item having HTML copies as linked sub-items
+          * 15 - PDF document
+          * 16 - Word Document
+          * 17 - Excel Document
+          * 18 - PowerPoint document
+          * 19 - Picture
+          * 20 - Audio file
+          * 21 - Video file
+          * 22 - Container files including ZIP, RAR, TAR and others 
+          * 23 - HTML file
+          * 24 - Text file
+      enum: [0,1,2,3,4,5,6,7,8,9,13,14,15,16,17,18,19,20,21,22,23,24]
+      default: 0
+
+    IntelligentSearchResult:
+      title: IntelligentSearchResult
+      type: object
+      properties:
+        records:
+          $ref: '#components/schemas/records'
+        status: #regarding the original doc, does code 1 indicate that the system or user should keep trying?#
+          type: integer
+          format: int32
+          description: >
+            Indicates the condition of the search requested. <br/><br/> Values:
+              * 0 - Success with results
+              * 1 - No future results available, stop trying. All results were delivered and the search is terminated. Note: Records may still be returned with this status code. 
+              * 2 - Search ID not found.
+              * 3 - No results yet but will keep trying.
+               
+
+    records:
+        title: records
+        type: array
+        description: ""
+        items:
+          type: object 
+          properties:
+            systemid: 
+              type: string
+              description: "The unique identifier of the item"
+            storageid: 
+              type: string
+              description: "Used to read the actual data of the item"
+            instore: 
+              type: boolean
+              description: "Indicates if the item has actual data and has a valid storageid"
+            size: 
+              type: integer
+              format: int32
+              description: "Size of the actual data, indicated in bytes"
+            accesslevel: 
+              type: integer
+              format: int32
+              description: "Value of 4 indicates that only the preview is available with the API key"
+            type: 
+              type: integer
+              format: int32
+              description: >
+                Indicates the type of low-level data
+                  * 0 - Binary/ Unspecified
+                  * 1 - Plain text
+                  * 2 - Picture
+                  * 3 - Video
+                  * 4 - Audio
+                  * 5 - Document file including office documents and PDF
+                  * 6 - Executable file
+                  * 7 - Container
+                  * 1001 - User
+                  * 1002 - Leak
+                  * 1004 - URL
+                  * 1005 - Forum
+            media:
+              $ref: '#components/schemas/media'
+            added: 
+              type: string
+              description: "When the item was indexed"
+            date: 
+              type: string
+              description: "The date of the original record if available. Otherwise, it will be set to the date of its inclusion into the index. "
+            name: 
+              type: string
+              description: "Name or title of the data"
+            description: 
+              type: string
+              description: "Typically not used"
+            xscore: 
+              type: integer
+              format: int32
+              description: "Relevancy score ranging from 0-100"
+            simhash: 
+              type: string
+              description: "similarity hash that depends on the content type"
+            bucket:
+              type: string
+              description: The bucket (data category) in which the result was found. A non-exhaustive list of buckets can be found [here](https://blog.intelx.io/2022/05/05/list-of-buckets/).
+            keyvalues:
+              type: boolean
+              description: "Not used"
+            tags:
+              type: boolean
+              description: "Additional information on the item"
+            relations:
+              $ref: '#components/schemas/relations'
+            accesslevelh: 
+              type: string
+              example: "Public"
+            mediah:
+              type: string
+              example: "Paste"
+            simhashh:
+              type: string
+              example: "d8d1c7186ba9a98c"
+            typeh:
+              type: string
+              example: "Text"
+            tagsh:
+              type: string
+              example: null
+            randomid:
+              type: string
+              example: "f2737370-e182-4707-ad7a-a8f6a3320934"
+
+
+    relations: 
+      type: array
+      description: "Identifiers of related items"
+      items:
+        type: object 
+        properties: 
+          target:
+            type: string
+          relation:
+            type: integer
+            format: int32
+
+  examples: 
+    IntelligentSearchRequestResponse_Example: 
+      summary: Example response with data
+      value: 
+        records: 
+          - systemid: "f13fdfc7-2ef6-42a4-bccf-61ff57971bd9"
+            storageid: "143cd96f978d7a7d43127b65b096c99462354098db599cf0daa684a8fb69932b7f0b0420973bc99a83193ff98970a89a5b2e09bb0b4957e13427b2c0394d3407"
+            instore: true
+            size: 4315485
+            accesslevel: 0
+            type: 1
+            media: 1
+            added:  "2017-12-14T07:35:50.998926Z"
+            date: "2017-12-14T07:35:05Z"
+            name: ""
+            description: ""
+            xscore: 68
+            simhash: 15623487490024384908
+            bucket: "pastes"
+            keyvalues: null
+            tags: null
+            relations:
+              - target:  "07c11339-1066-4906-9490-9b93d2c35690"
+                relation: 0
+            accesslevelh: "Public"
+            mediah: "Paste"
+            simhashh:  "d8d1c7186ba9a98c"
+            typeh: "Text"
+            tagsh: null
+            randomid:  "f2737370-e182-4707-ad7a-a8f6a3320934"
+        status: 0
+
+
+
+  securitySchemes: 
+    app_id:
+      type: apiKey
+      description: "Every request must be authenticated with an API key.To obtain an API key, please visit https://intelx.io/account?tab=developer (requires sign in). <br/><br/> **Note**: All API key limitations are stated in your license document. "
+      name: x-key
+      in: header
