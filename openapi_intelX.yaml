@@ -184,7 +184,7 @@ paths:
       tags:
       - File 
       summary: "Reads an item's data for a detailed inline view"
-      description:
+      description: ""
       operationId: FileView
       parameters:
         - $ref: '#/components/parameters/format'
@@ -344,12 +344,15 @@ components:
       in: query
       description: "Indicates the content type. This parameter must be the same as the source item."
       schema:
+        type: integer
+        format: int32
 
     m: # unsure of values available etc #
       name: m
       in: query
       description: "Indicates the Media type. This parameter must be the same as the source item."
       schema: 
+        type: string
 
     e: #didn't specify the schema as default to be safe (dependent on it being a text output) #
       name: e
