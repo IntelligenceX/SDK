@@ -1,11 +1,21 @@
 #!/usr/bin/env python3
 
 import requests
+# import inspect  # DEBUG
+# import logging  # DEBUG
+# import http.client # DEBUG
 import time
 import json
 import sys
 import re
 
+# http.client.HTTPConnection.debuglevel = 1  # DEBUG
+
+# logging.basicConfig()  # DEBUG
+# logging.getLogger().setLevel(logging.DEBUG)  # DEBUG
+# requests_log = logging.getLogger("requests.packages.urllib3")  # DEBUG
+# requests_log.setLevel(logging.DEBUG)  # DEBUG
+# requests_log.propagate = True  # DEBUG
 
 class intelx:
 
@@ -14,13 +24,15 @@ class intelx:
     USER_AGENT = ''
 
     # The API key must be always supplied
-    def __init__(self, key, ua='IX-Python/0.5'):
+    def __init__(self, key, ua='IX-Python/0.6'):
         """
         Initialize API by setting the API key.
         """
         self.API_ROOT = "https://2.intelx.io"
         self.API_KEY = key
         self.USER_AGENT = ua
+        self.API_RATE_LIMIT = 1
+        self.HEADERS = {'X-Key': self.API_KEY, 'User-Agent': self.USER_AGENT}
 
     def get_error(self, code):
         """
@@ -39,6 +51,12 @@ class intelx:
         if code == 404:
             return "404 | Not Found"
 
+        """
+        Get error string by respective intelx.io status code.
+        """
+        if code == 1:
+            return "1 | Invalid term"
+
     def cleanup_treeview(self, treeview):
         """
         Cleans up treeview output from the API.
@@ -53,7 +71,7 @@ class intelx:
         """
         Return a JSON object with the current user's API capabilities
         """
-        time.sleep(1) # API_ROOT Rate Limit
+        time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
         r = requests.get(f"{self.API_ROOT}/authenticate/info", headers=h)
         return r.json()
@@ -65,7 +83,7 @@ class intelx:
         - 0: Text
         - 1: Picture
         """
-        time.sleep(1) # API_ROOT Rate Limit
+        time.sleep(self.API_RATE_LIMIT)
         r = requests.get(f"{self.API_ROOT}/file/preview?c={ctype}&m={mediatype}&f={format}&sid={sid}&b={bucket}&e={e}&l={lines}&k={self.API_KEY}")
         return r.text
 
@@ -101,7 +119,7 @@ class intelx:
             format = 0
         else:
             format = 1
-        time.sleep(1) # API_ROOT Rate Limit
+        time.sleep(self.API_RATE_LIMIT)
         r = requests.get(f"{self.API_ROOT}/file/view?f={format}&storageid={sid}&bucket={bucket}&escape={escape}&k={self.API_KEY}")
         return r.text
 
@@ -123,7 +141,7 @@ class intelx:
         name option:
         - Specify the name to save the file as (e.g document.pdf).
         """
-        time.sleep(1) # API_ROOT Rate Limit
+        time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
         r = requests.get(f"{self.API_ROOT}/file/read?type={type}&systemid={id}&bucket={bucket}", headers=h, stream=True)
         with open(f"{filename}", "wb") as f:
@@ -135,7 +153,7 @@ class intelx:
         """
         Show a treeview of an item that has multiple files/folders
         """
-        time.sleep(1) # API_ROOT Rate Limit
+        time.sleep(self.API_RATE_LIMIT)
         try:
             r = requests.get(f"{self.API_ROOT}/file/view?f=12&storageid={sid}&k={self.API_KEY}", timeout=5)
             if "Could not generate" in r.text:
@@ -239,9 +257,11 @@ class intelx:
             "media": media,
             "terminate": terminate
         }
-        time.sleep(1) # API_ROOT Rate Limit
+        time.sleep(self.API_RATE_LIMIT)
         r = requests.post(self.API_ROOT + '/intelligent/search', headers=h, json=p)
         if r.status_code == 200:
+            if r.json()['status'] == 1:
+                return r.json()['status']
             return r.json()['id']
         else:
             return r.status_code
@@ -328,7 +348,7 @@ class intelx:
         - Identifiers of related items
 
         """
-        time.sleep(1) # API_ROOT Rate Limit
+        time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
         r = requests.get(self.API_ROOT + f'/intelligent/search/result?id={id}&limit={limit}', headers=h)
         if(r.status_code == 200):
@@ -340,7 +360,7 @@ class intelx:
         """
         Terminate a previously initialized search based on its UUID.
         """
-        time.sleep(1) # API_ROOT Rate Limit
+        time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
         r = requests.get(self.API_ROOT + f'/intelligent/search/terminate?id={uuid}', headers=h)
         if(r.status_code == 200):
@@ -352,7 +372,7 @@ class intelx:
         """
         Initialize a phonebook search and return the ID of the task/search for further processing
         """
-        time.sleep(1) # API_ROOT Rate Limit
+        time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
         p = {
             "term": term,
@@ -386,7 +406,7 @@ class intelx:
         - 2: Search ID not found.
         - 3: No results yet, but keep trying.
         """
-        time.sleep(1) # API_ROOT Rate Limit
+        time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
         r = requests.get(self.API_ROOT + f'/phonebook/search/result?id={id}&limit={limit}&offset={offset}', headers=h)
         if(r.status_code == 200):
@@ -416,7 +436,7 @@ class intelx:
           a. Historical copies of websites. Use the storage ID from the field "historyfile" in the search result.
           b. List of indexed sub-pages for a given website. Use the storage ID from the field "indexfile" in the search result.
         """
-        time.sleep(1) # API_ROOT Rate Limit
+        time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
         r = requests.get(self.API_ROOT + f'/file/view?f=13&storageid={id}&bucket={bucket}', headers=h)
         
@@ -560,6 +580,6 @@ class intelx:
         return json.dumps(stats)
 
     def selectors(self, document):
-        time.sleep(1) # API_ROOT Rate Limit
+        time.sleep(self.API_RATE_LIMIT)
         r = requests.get(self.API_ROOT + f'/item/selector/list/human?id={document}&k={self.API_KEY}')
         return r.json()['selectors']
