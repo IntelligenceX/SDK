@@ -10,17 +10,13 @@ jobs:
   security:
     # runs-on: ubuntu-latest
     runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        python-version: [ '3.7.x', '3.11.x' ]
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python 3.11.9
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.11.9
 
       - name: Run jake from Sonatype
         run: |
@@ -30,6 +26,5 @@ jobs:
           pipenv install --dev build
           pipenv install -e .
           pipenv run pip freeze > requirements.txt
-          
           pipenv install --dev jake
           pipenv run jake ddt --whitelist jake-whitelist.json

@@ -14,10 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python 3.11.7
+    - name: Set up Python 3.11.9
       uses: actions/setup-python@v5
       with:
-        python-version: 3.11.7
+        python-version: 3.11.9
     - name: Run safety from PyUp
       run: |
         cd ./Python
@@ -25,4 +25,3 @@ jobs:
         pip3 freeze > requirements.txt
         pip3 install safety
         safety check -r requirements.txt
-

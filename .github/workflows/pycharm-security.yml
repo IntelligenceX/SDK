@@ -1,3 +1,5 @@
+name: 'PyCharm Security'
+
 on:
   push:
   pull_request:
