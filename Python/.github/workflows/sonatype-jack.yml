@@ -1,0 +1,28 @@
+name: 'Sonatype Jake'
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '* * 3 * *'
+
+jobs:
+  security:
+    # runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.11.8
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11.8
+
+      - name: Run jake from Sonatype
+        run: |
+          pip3 install pipenv
+          pipenv install --dev build
+          pipenv install -e .
+          pipenv run pip freeze > requirements.txt
+          pipenv install --dev jake
+          pipenv run jake ddt --whitelist jake-whitelist.json
