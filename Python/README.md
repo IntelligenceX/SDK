@@ -6,11 +6,12 @@ intelx.py is a Python command-line utility and API wrapper for intelx.io, made t
 
 ## Installation
 ```bash
-pip install "intelx @ git+https://github.com/IntelligenceX/Python"
+pip install "intelx @ git+https://github.com/IntelligenceX/SDK#subdirectory=Python"
 ```
 
 ```bash
-git clone https://github.com/IntelligenceX/Python
+git clone https://github.com/IntelligenceX/SDK
+cd Python
 pip3 install -e . 
 ```
 
