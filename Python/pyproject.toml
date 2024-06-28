@@ -29,4 +29,4 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 package-dir = {"" = "intelx"}
-script-files = ["scripts/intelx.py"]
+script-files = ["cli/intelx.py"]
