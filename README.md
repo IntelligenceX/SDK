@@ -61,4 +61,4 @@ We love contributions! Feel free to use the issue tracker for any feature reques
 
 The Terms of Service https://intelx.io/terms-of-service apply.
 
-&copy; 2018 - 2024 Intelligence X
+&copy; 2018 - 2025 Intelligence X
