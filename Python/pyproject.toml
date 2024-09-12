@@ -1,6 +1,6 @@
 [project]
 name = "intelx"
-version = "0.6.0"
+version = "0.6.2"
 authors = [
   { name="Kleissner Investments s.r.o./ Dominik Penner", email="info@intelx.io" },
 ]
