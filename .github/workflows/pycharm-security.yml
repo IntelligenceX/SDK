@@ -12,7 +12,11 @@ jobs:
     runs-on: ubuntu-22.04
     name: Execute the pycharm-security action
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4    
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
       - name: Run PyCharm Security
         uses: tonybaloney/pycharm-security@master
         with:

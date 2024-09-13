@@ -13,13 +13,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python 3.11.8
+      - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
-          python-version: 3.11.8
+          python-version: 3.12
 
       - name: Run jake from Sonatype
         run: |
+          
+          cd ./Python
           pip3 install pipenv
           pipenv install --dev build
           pipenv install -e .
