@@ -6,7 +6,7 @@ authors = [
 ]
 description = "IntelX is a Python command-line utility and API wrapper for intelx.io, made to perform any kind of open-source intelligence."
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 keywords =["intelx", "intelligence x", "intelx.io", "_IntelligenceX", "IntelligenceX", "_intelx"]
 classifiers = [
     "Programming Language :: Python :: 3",
