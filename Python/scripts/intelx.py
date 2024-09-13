@@ -225,7 +225,13 @@ def main(argv=None):
                     dateto=dateto,
                     terminate=terminate
                 )
-                print(json.dumps(search))
+                headers = ["Name", "Date", "Bucket", "Line"]
+                data = []
+                for records in search:
+                    for result in search[records]:
+                        data.append([result['item']['name'], result['item']['date'], result['item']['bucket'], result['linea']])
+                print(tabulate.tabulate(sorted(data), headers=headers, tablefmt="fancy_grid"))
+
 
     if args.search:
 
