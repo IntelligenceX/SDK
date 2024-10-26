@@ -124,6 +124,8 @@ type SearchResult struct {
 	TagsH        []PanelSearchResultTag `json:"tagsh"`        // Human friendly tags
 	RandomID     uuid.UUID              `json:"randomid"`     // Random ID
 	BucketH      string                 `json:"bucketh"`      // Human friendly bucket name
+	Group        string                 `json:"group"`        // File Group
+	IndexFile    string                 `json:"indexfile"`    // Index file ID
 }
 
 // IntelligentSearchResult contains the result items
