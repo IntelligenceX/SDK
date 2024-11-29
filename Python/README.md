@@ -5,6 +5,19 @@ intelx.py is a Python command-line utility and API wrapper for intelx.io, made t
 ![](scripts/screenshot1.png)
 
 ## Installation
+
+### Python Packaging Index
+
+```bash
+pip install intelx  
+```
+
+```bash
+pip install --index-url https://pypi.python.org/simple/ intelx  
+```
+
+### GitHub
+
 ```bash
 pip install "intelx @ git+https://github.com/IntelligenceX/SDK#subdirectory=Python"
 ```
