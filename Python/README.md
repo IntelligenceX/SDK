@@ -5,6 +5,19 @@ intelx.py is a Python command-line utility and API wrapper for intelx.io, made t
 ![](scripts/screenshot1.png)
 
 ## Installation
+
+### Python Packaging Index
+
+```bash
+pip install intelx  
+```
+
+```bash
+pip install --index-url https://pypi.python.org/simple/ intelx  
+```
+
+### GitHub
+
 ```bash
 pip install "intelx @ git+https://github.com/IntelligenceX/SDK#subdirectory=Python"
 ```
@@ -90,6 +103,19 @@ intelx.py -search 3a4d5699-737c-4d22-8dbd-c5391ce805df --view
 intelx.py -search cia.gov --phonebook emails
 ```
 
+### Identity Portal
+
+#### Export Accounts
+
+```bash
+intelx.py -identity riseup.net --exportaccounts
+```
+
+#### Data Leaks
+
+```bash
+intelx.py -identity riseup.net --dataleaks
+```
 
 # Usage as a library
 
@@ -307,4 +333,4 @@ Here is a table listing the media types, along with their respective IDs.
 
 Please use the issue tracker at https://github.com/IntelligenceX/Python/issues to report any bugs, security vulnerabilities or feature requests.
 
-Includes contributions from [zer0pwn](https://github.com/zeropwn/intelx.py) and [others](https://github.com/IntelligenceX/SDK/graphs/contributors)
+Includes contributions from [CSIRTAmericas](https://github.com/CSIRTAmericas/pyintelxio), [zer0pwn](https://github.com/zeropwn/intelx.py)CSIRTAmericas and [others](https://github.com/IntelligenceX/SDK/graphs/contributors)

@@ -101,6 +101,11 @@ def pb_search_results_emails(ix, search):
             if result['selectortype'] == 1:
                 print(result['selectorvalue'])
 
+def idsearch(identity_ix, query, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", terminate=[]):
+    if not args.raw:
+        print(colored(f"[{rightnow()}] Starting search of \"{args.search}\".", 'green'))
+    s = identity_ix.search(term=query, maxresults=maxresults, buckets=buckets, timeout=timeout, datefrom=datefrom, dateto=dateto,  terminate=terminate)
+    return s
 
 def main(argv=None):
 
@@ -128,6 +133,7 @@ def main(argv=None):
     parser.add_argument('-download', help="download the specified item specified by its ID")
     parser.add_argument('-bucket', help="download from this bucket (must be specified with -download)")
     parser.add_argument('-name', help="set the filename to save the item as")
+    parser.add_argument('--dataleaks', help="searches for a domain or email address to find data leaks", action="store_true")
     parser.add_argument('--exportaccounts', help="searches for a domain or email address to find leaked accounts.", action="store_true")
     parser.add_argument('--nopreview', help="do not show text preview snippets of search results", action="store_true")
     parser.add_argument('--view', help="show full contents of search results", action="store_true")
@@ -207,6 +213,29 @@ def main(argv=None):
                 for result in account[block]:
                     data.append([result['user'], result['password'], result['passwordtype'], result['sourceshort']])
             print(tabulate.tabulate(sorted(data), headers=headers, tablefmt="fancy_grid"))
+
+        if args.dataleaks:
+                print(colored(f"[{rightnow()}] Starting data leaks search of \"{args.identity}\".", 'green'))
+                search = IdentityService.idsearch(
+                    ix,
+                    args.identity,
+                    maxresults=maxresults,
+                    buckets=buckets,
+                    datefrom=datefrom,
+                    dateto=dateto,
+                    terminate=terminate
+                )
+                headers = ["Name", "Date", "Bucket", "Line"]
+                data = []
+                for records in search:
+                    for result in search[records]:
+                        data.append([result['item']['name'], result['item']['date'], result['item']['bucket'], result['linea']])
+                exporttsv=tabulate.tabulate(data, tablefmt="tsv")
+                tsv_filename = args.identity + ".tsv"
+                tsv_file=open(tsv_filename,"w")
+                tsv_file.write(exporttsv)
+                tsv_file.close()
+                print(colored(f"[{rightnow()}] Exported output to \"{args.identity}.tsv\".", 'green'))
 
     if args.search:
 
