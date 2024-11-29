@@ -90,6 +90,19 @@ intelx.py -search 3a4d5699-737c-4d22-8dbd-c5391ce805df --view
 intelx.py -search cia.gov --phonebook emails
 ```
 
+### Identity Portal
+
+#### Export Accounts
+
+```bash
+intelx.py -identity riseup.net --exportaccounts
+```
+
+#### Data Leaks
+
+```bash
+intelx.py -identity riseup.net --dataleaks
+```
 
 # Usage as a library
 
