@@ -14,11 +14,12 @@ The SDK contains these parts:
 6. [Maltego Transform](Maltego%20Transform/README.md)
 
 Latest updates:
-* 12.04.2020 - Version 2: New Python API wrapper and Command Line Interface
-* 24.06.2020 - Version 3: Additional filter for [phonebook.cz](https://phonebook.cz) like lookups in Python code
-* 04.07.2020 - Version 4: New Maltego Transform
-* <s>02.02.2024 - Version 5: Python Package moved to [Python Repository](https://github.com/IntelligenceX/Python)</s>
-* 06.06.2024 - Version 6: Python supports "Export Leaked Accounts" of identity.intelx.io
+* 12.04.2020 - New Python API wrapper and Command Line Interface
+* 24.06.2020 - Additional filter for [phonebook.cz](https://phonebook.cz) like lookups in Python code
+* 04.07.2020 - New Maltego Transform
+* <s>02.02.2024 - Python Package moved to [Python Repository](https://github.com/IntelligenceX/Python)</s>
+* 06.06.2024 - Python supports "Export Leaked Accounts" of identity.intelx.io
+* 30.11.2024 - 0.6.2 installable from Python Package Index
 
 You will need an API key which you can obtain at https://intelx.io/account?tab=developer. Please note that integration into your commercial service/product requires a paid license. If your product is open source, do not embed your API key. The use of public API keys is discontinued.
 
