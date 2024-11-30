@@ -271,7 +271,7 @@ class intelx:
         Return results from an initialized search based on its ID
 
         status (results status):
-        - 0: Sucess with results.
+        - 0: Success with results.
         - 1: No more results available.
         - 2: Search ID not found.
         - 3: No results yet, but keep trying.
@@ -401,7 +401,7 @@ class intelx:
         ___________________________________________
         RETURN VALUES
         status (results status):
-        - 0: Sucess with results.
+        - 0: Success with results.
         - 1: No more results available.
         - 2: Search ID not found.
         - 3: No results yet, but keep trying.
@@ -424,7 +424,7 @@ class intelx:
 
     def query_pb_results(self, id, limit):
         """
-        Query the results fom a phonebook search.
+        Query the results from a phonebook search.
         Meant for usage within loops.
         """
         results = self.PHONEBOOK_SEARCH_RESULT(id, limit)
@@ -439,12 +439,12 @@ class intelx:
         time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
         r = requests.get(self.API_ROOT + f'/file/view?f=13&storageid={id}&bucket={bucket}', headers=h)
-        
+
         if(r.status_code == 200):
             return r.json()
         else:
             return r.status_code
-            
+
 
     def search(self, term, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[]):
         """

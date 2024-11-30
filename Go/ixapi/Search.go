@@ -68,7 +68,7 @@ func (api *IntelligenceXAPI) SearchWithDates(ctx context.Context, Selector strin
 	return records, selectorInvalid, nil
 }
 
-// GetTag gets a tags value for the first occurence. Empty if not found.
+// GetTag gets a tags value for the first occurrence. Empty if not found.
 func (item *Item) GetTag(Class int16) (Value string) {
 	if item.Tags == nil {
 		return ""

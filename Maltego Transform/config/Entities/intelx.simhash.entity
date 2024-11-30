@@ -1,4 +1,4 @@
-<MaltegoEntity id="intelx.simhash" displayName="Similarity Hash" displayNamePlural="Similarity Hashs" description="Similarity Hash" category="My Entities" smallIconResource="Technology/ClusterOrange" largeIconResource="Technology/ClusterOrange" allowedRoot="true" conversionOrder="2147483647" visible="true">
+<MaltegoEntity id="intelx.simhash" displayName="Similarity Hash" displayNamePlural="Similarity Hashes" description="Similarity Hash" category="My Entities" smallIconResource="Technology/ClusterOrange" largeIconResource="Technology/ClusterOrange" allowedRoot="true" conversionOrder="2147483647" visible="true">
    <Properties value="simhash" displayValue="simhash">
       <Groups/>
       <Fields>

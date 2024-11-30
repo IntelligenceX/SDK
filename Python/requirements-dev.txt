@@ -1,2 +1,3 @@
 build
 twine
+pre-commit
