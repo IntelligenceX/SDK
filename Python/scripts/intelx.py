@@ -231,11 +231,11 @@ def main(argv=None):
                     for result in search[records]:
                         data.append([result['item']['name'], result['item']['date'], result['item']['bucket'], result['linea']])
                 exporttsv=tabulate.tabulate(data, tablefmt="tsv")
-                tsv_filename = args.identity + ".tsv"
+                tsv_filename = "intelx-output-" + args.identity + "-data_leaks.tsv"
                 tsv_file=open(tsv_filename,"w")
                 tsv_file.write(exporttsv)
                 tsv_file.close()
-                print(colored(f"[{rightnow()}] Exported output to \"{args.identity}.tsv\".", 'green'))
+                print(colored(f"[{rightnow()}] Exported output to \"{tsv_filename}\".", 'green'))
 
     if args.search:
 
@@ -292,7 +292,7 @@ def main(argv=None):
                 targetval = 3
             else:
                 targetval = 0
-            
+
             search = pbsearch(
                 ix,
                 args.search,
