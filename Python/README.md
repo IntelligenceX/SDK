@@ -333,4 +333,4 @@ Here is a table listing the media types, along with their respective IDs.
 
 Please use the issue tracker at https://github.com/IntelligenceX/Python/issues to report any bugs, security vulnerabilities or feature requests.
 
-Includes contributions from [CSIRTAmericas](https://github.com/CSIRTAmericas/pyintelxio), [zer0pwn](https://github.com/zeropwn/intelx.py)CSIRTAmericas and [others](https://github.com/IntelligenceX/SDK/graphs/contributors)
+Includes contributions from [CSIRTAmericas](https://github.com/CSIRTAmericas/pyintelxio), [zer0pwn](https://github.com/zeropwn/intelx.py) and [others](https://github.com/IntelligenceX/SDK/graphs/contributors)
