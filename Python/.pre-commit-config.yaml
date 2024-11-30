@@ -1,0 +1,25 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+# https://github.com/codespell-project/codespell?tab=readme-ov-file#pre-commit-hook
+-   repo: https://github.com/codespell-project/codespell
+    rev: v2.2.4
+    hooks:
+    -   id: codespell
+# https://github.com/markdownlint/markdownlint/blob/main/.pre-commit-hooks.yaml
+-   repo: https://github.com/markdownlint/markdownlint
+    rev: v0.13.0
+    hooks:
+    -   id: markdownlint
+        name: Markdownlint
+        description: Run markdownlint on your Markdown files
+        entry: mdl -r ~MD024,~MD025,~MD029
+        language: ruby
+        files: \.(md|mdown|markdown)

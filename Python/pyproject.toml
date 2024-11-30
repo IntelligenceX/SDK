@@ -1,6 +1,6 @@
 [project]
 name = "intelx"
-version = "0.6.2"
+version = "0.6.3"
 authors = [
   { name="Kleissner Investments s.r.o./ Dominik Penner", email="info@intelx.io" },
 ]
@@ -20,7 +20,7 @@ dependencies = [
 ]
 
 [build-system]
-requires = ["setuptools>=61.0",'requests','pygments','termcolor','tabulate'] 
+requires = ["setuptools>=61.0",'requests','pygments','termcolor','tabulate']
 build-backend = "setuptools.build_meta"
 
 [project.urls]

@@ -21,7 +21,7 @@ class ixsearch(DiscoverableTransform):
                 if record['name'] == "":
                     name = record['systemid']
                 else:
-                    # we have to strip all unicode chracters, cuz maltego-trx can not handle them properly
+                    # we have to strip all unicode characters, cuz maltego-trx can not handle them properly
                     name = record['name']
                     stripped_name = (c for c in name if 0 < ord(c) < 127)
                     name = ''.join(stripped_name)
