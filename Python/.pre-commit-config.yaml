@@ -13,3 +13,13 @@ repos:
     rev: v2.2.4
     hooks:
     -   id: codespell
+# https://github.com/markdownlint/markdownlint/blob/main/.pre-commit-hooks.yaml
+-   repo: https://github.com/markdownlint/markdownlint
+    rev: v0.13.0
+    hooks:
+    -   id: markdownlint
+        name: Markdownlint
+        description: Run markdownlint on your Markdown files
+        entry: mdl
+        language: ruby
+        files: \.(md|mdown|markdown)
