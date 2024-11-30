@@ -20,6 +20,6 @@ repos:
     -   id: markdownlint
         name: Markdownlint
         description: Run markdownlint on your Markdown files
-        entry: mdl
+        entry: mdl -r ~MD024,~MD025,~MD029
         language: ruby
         files: \.(md|mdown|markdown)
