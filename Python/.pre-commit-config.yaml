@@ -23,3 +23,10 @@ repos:
         entry: mdl -r ~MD024,~MD025,~MD029
         language: ruby
         files: \.(md|mdown|markdown)
+# https://github.com/abravalheri/validate-pyproject?tab=readme-ov-file#pre-commit
+-   repo: https://github.com/abravalheri/validate-pyproject
+    rev: v0.23
+    hooks:
+    -   id: validate-pyproject
+        # Optional extra validations from SchemaStore:
+        additional_dependencies: ["validate-pyproject-schema-store[all]"]
