@@ -30,3 +30,8 @@ repos:
     -   id: validate-pyproject
         # Optional extra validations from SchemaStore:
         additional_dependencies: ["validate-pyproject-schema-store[all]"]
+# https://github.com/kieran-ryan/pyprojectsort?tab=readme-ov-file#using-pyprojectsort-with-pre-commit
+# -  repo: https://github.com/kieran-ryan/pyprojectsort
+#    rev: v0.3.0
+#    hooks:
+#    -   id: pyprojectsort

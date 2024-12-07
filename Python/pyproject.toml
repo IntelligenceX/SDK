@@ -1,32 +1,49 @@
-[project]
-name = "intelx"
-version = "0.6.3"
-authors = [
-  { name="Kleissner Investments s.r.o./ Dominik Penner", email="info@intelx.io" },
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [
+    "pygments",
+    "requests",
+    "setuptools>=61.0",
+    "tabulate",
+    "termcolor",
 ]
-description = "IntelX is a Python command-line utility and API wrapper for intelx.io, made to perform any kind of open-source intelligence."
-readme = "README.md"
-requires-python = ">=3.9"
-keywords =["intelx", "intelligence x", "intelx.io", "_IntelligenceX", "IntelligenceX", "_intelx"]
+
+[project]
+authors = [
+    { email = "info@intelx.io", name = "Kleissner Investments s.r.o./ Dominik Penner" },
+]
 classifiers = [
-    "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
 ]
 dependencies = [
-    "requests",
     "pygments",
+    "requests",
+    "tabulate",
     "termcolor",
-    "tabulate"
 ]
-
-[build-system]
-requires = ["setuptools>=61.0",'requests','pygments','termcolor','tabulate']
-build-backend = "setuptools.build_meta"
+description = "IntelX is a Python command-line utility and API wrapper for intelx.io, made to perform any kind of open-source intelligence."
+keywords = [
+    "IntelligenceX",
+    "_IntelligenceX",
+    "_intelx",
+    "intelligence x",
+    "intelx",
+    "intelx.io",
+]
+name = "intelx"
+readme = "README.md"
+requires-python = ">=3.9"
+version = "0.6.3"
 
 [project.urls]
-"Homepage" = "https://github.com/IntelligenceX/SDK/tree/master/Python"
 "Bug Tracker" = "https://github.com/IntelligenceX/SDK/issues"
+Homepage = "https://github.com/IntelligenceX/SDK/tree/master/Python"
 
 [tool.setuptools]
-package-dir = {"" = "intelx"}
-script-files = ["scripts/intelx.py"]
+script-files = [
+    "scripts/intelx.py",
+]
+
+[tool.setuptools.package-dir]
+"" = "intelx"
