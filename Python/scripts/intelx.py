@@ -213,6 +213,12 @@ def main(argv=None):
                 for result in account[block]:
                     data.append([result['user'], result['password'], result['passwordtype'], result['sourceshort']])
             print(tabulate.tabulate(sorted(data), headers=headers, tablefmt="fancy_grid"))
+            exporttsv=tabulate.tabulate(data, tablefmt="tsv")
+            tsv_filename = "intelx-output-" + args.identity + "-export_accounts.tsv"
+            tsv_file=open(tsv_filename,"w")
+            tsv_file.write(exporttsv)
+            tsv_file.close()
+            print(colored(f"[{rightnow()}] Exported output to \"{tsv_filename}\".", 'green'))
 
         if args.dataleaks:
                 print(colored(f"[{rightnow()}] Starting data leaks search of \"{args.identity}\".", 'green'))
