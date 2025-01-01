@@ -19,7 +19,7 @@ Latest updates:
 * 04.07.2020 - New Maltego Transform
 * <s>02.02.2024 - Python Package moved to [Python Repository](https://github.com/IntelligenceX/Python)</s>
 * 06.06.2024 - Python supports "Export Leaked Accounts" of identity.intelx.io
-* 30.11.2024 - 0.6.2 installable from Python Package Index
+* 30.11.2024 - 0.6.2 installable from [Python Package Index](https://pypi.org/project/intelx/)
 
 You will need an API key which you can obtain at https://intelx.io/account?tab=developer. Please note that integration into your commercial service/product requires a paid license. If your product is open source, do not embed your API key. The use of public API keys is discontinued.
 
