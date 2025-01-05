@@ -1,5 +1,6 @@
 # intelx.py
 
+![PyPI - Version](https://img.shields.io/pypi/v/intelx)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/intelx)
 ![PyPI - Downloads](https://img.shields.io/pypi/dw/intelx)
 ![PyPI - Downloads](https://img.shields.io/pypi/dd/intelx)
