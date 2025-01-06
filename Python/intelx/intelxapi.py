@@ -24,7 +24,7 @@ class intelx:
     USER_AGENT = ''
 
     # The API key must be always supplied
-    def __init__(self, key, ua='IX-Python/0.6'):
+    def __init__(self, key, ua='IX-Python/0.6', proxies=None, verify=None):
         """
         Initialize API by setting the API key.
         """
@@ -33,6 +33,8 @@ class intelx:
         self.USER_AGENT = ua
         self.API_RATE_LIMIT = 1
         self.HEADERS = {'X-Key': self.API_KEY, 'User-Agent': self.USER_AGENT}
+        self.PROXIES = proxies
+        self.VERIFY = verify
 
     def get_error(self, code):
         """
@@ -73,7 +75,7 @@ class intelx:
         """
         time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
-        r = requests.get(f"{self.API_ROOT}/authenticate/info", headers=h)
+        r = requests.get(f"{self.API_ROOT}/authenticate/info", headers=h, proxies=self.PROXIES, verify=self.VERIFY)
         return r.json()
 
     def FILE_PREVIEW(self, ctype, mediatype, format, sid, bucket='', e=0, lines=8):
@@ -84,7 +86,7 @@ class intelx:
         - 1: Picture
         """
         time.sleep(self.API_RATE_LIMIT)
-        r = requests.get(f"{self.API_ROOT}/file/preview?c={ctype}&m={mediatype}&f={format}&sid={sid}&b={bucket}&e={e}&l={lines}&k={self.API_KEY}")
+        r = requests.get(f"{self.API_ROOT}/file/preview?c={ctype}&m={mediatype}&f={format}&sid={sid}&b={bucket}&e={e}&l={lines}&k={self.API_KEY}", proxies=self.PROXIES, verify=self.VERIFY)
         return r.text
 
     def FILE_VIEW(self, ctype, mediatype, sid, bucket='', escape=0):
@@ -120,7 +122,7 @@ class intelx:
         else:
             format = 1
         time.sleep(self.API_RATE_LIMIT)
-        r = requests.get(f"{self.API_ROOT}/file/view?f={format}&storageid={sid}&bucket={bucket}&escape={escape}&k={self.API_KEY}")
+        r = requests.get(f"{self.API_ROOT}/file/view?f={format}&storageid={sid}&bucket={bucket}&escape={escape}&k={self.API_KEY}", proxies=self.PROXIES, verify=self.VERIFY)
         return r.text
 
     def FILE_READ(self, id, type=0, bucket="", filename=""):
@@ -143,7 +145,7 @@ class intelx:
         """
         time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
-        r = requests.get(f"{self.API_ROOT}/file/read?type={type}&systemid={id}&bucket={bucket}", headers=h, stream=True)
+        r = requests.get(f"{self.API_ROOT}/file/read?type={type}&systemid={id}&bucket={bucket}", headers=h, stream=True, proxies=self.PROXIES, verify=self.VERIFY)
         with open(f"{filename}", "wb") as f:
             f.write(r.content)
             f.close()
@@ -155,7 +157,7 @@ class intelx:
         """
         time.sleep(self.API_RATE_LIMIT)
         try:
-            r = requests.get(f"{self.API_ROOT}/file/view?f=12&storageid={sid}&k={self.API_KEY}", timeout=5)
+            r = requests.get(f"{self.API_ROOT}/file/view?f=12&storageid={sid}&k={self.API_KEY}", timeout=5, proxies=self.PROXIES, verify=self.VERIFY)
             if "Could not generate" in r.text:
                 return False
             return r.text
@@ -258,7 +260,7 @@ class intelx:
             "terminate": terminate
         }
         time.sleep(self.API_RATE_LIMIT)
-        r = requests.post(self.API_ROOT + '/intelligent/search', headers=h, json=p)
+        r = requests.post(self.API_ROOT + '/intelligent/search', headers=h, json=p, proxies=self.PROXIES, verify=self.VERIFY)
         if r.status_code == 200:
             if r.json()['status'] == 1:
                 return r.json()['status']
@@ -350,7 +352,7 @@ class intelx:
         """
         time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
-        r = requests.get(self.API_ROOT + f'/intelligent/search/result?id={id}&limit={limit}', headers=h)
+        r = requests.get(self.API_ROOT + f'/intelligent/search/result?id={id}&limit={limit}', headers=h, proxies=self.PROXIES, verify=self.VERIFY)
         if(r.status_code == 200):
             return r.json()
         else:
@@ -362,7 +364,7 @@ class intelx:
         """
         time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
-        r = requests.get(self.API_ROOT + f'/intelligent/search/terminate?id={uuid}', headers=h)
+        r = requests.get(self.API_ROOT + f'/intelligent/search/terminate?id={uuid}', headers=h, proxies=self.PROXIES, verify=self.VERIFY)
         if(r.status_code == 200):
             return True
         else:
@@ -387,7 +389,7 @@ class intelx:
             "terminate": terminate,
             "target": target
         }
-        r = requests.post(self.API_ROOT + '/phonebook/search', headers=h, json=p)
+        r = requests.post(self.API_ROOT + '/phonebook/search', headers=h, json=p, proxies=self.PROXIES, verify=self.VERIFY)
         if r.status_code == 200:
             return r.json()['id']
         else:
@@ -408,7 +410,7 @@ class intelx:
         """
         time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
-        r = requests.get(self.API_ROOT + f'/phonebook/search/result?id={id}&limit={limit}&offset={offset}', headers=h)
+        r = requests.get(self.API_ROOT + f'/phonebook/search/result?id={id}&limit={limit}&offset={offset}', headers=h, proxies=self.PROXIES, verify=self.VERIFY)
         if(r.status_code == 200):
             return r.json()
         else:
@@ -438,7 +440,7 @@ class intelx:
         """
         time.sleep(self.API_RATE_LIMIT)
         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
-        r = requests.get(self.API_ROOT + f'/file/view?f=13&storageid={id}&bucket={bucket}', headers=h)
+        r = requests.get(self.API_ROOT + f'/file/view?f=13&storageid={id}&bucket={bucket}', headers=h, proxies=self.PROXIES, verify=self.VERIFY)
 
         if(r.status_code == 200):
             return r.json()
@@ -581,5 +583,5 @@ class intelx:
 
     def selectors(self, document):
         time.sleep(self.API_RATE_LIMIT)
-        r = requests.get(self.API_ROOT + f'/item/selector/list/human?id={document}&k={self.API_KEY}')
+        r = requests.get(self.API_ROOT + f'/item/selector/list/human?id={document}&k={self.API_KEY}', proxies=self.PROXIES, verify=self.VERIFY)
         return r.json()['selectors']
