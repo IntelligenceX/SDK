@@ -1,6 +1,11 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
+#https://commitizen-tools.github.io/commitizen/getting_started/#integration-with-pre-commit
+-   repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.1.0
+    hooks:
+    -   id: commitizen
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
     hooks:
