@@ -414,6 +414,31 @@ class intelx:
         else:
             return r.status_code
 
+    def INTEL_EXPORT(self, id, start=1, end=1000, filename="sample.zip"):
+        """
+        Export all file from search. Use this for direct data download All file in one time.
+        id search:
+        - Specifies search ID.
+        start option:
+        - start index of search
+        - default: 1
+        end option:
+        - end index of search
+        - default: 1000
+        filename option:
+        - Specify the name to save the file as (default: sample, extension always is zip).
+        """
+        time.sleep(self.API_RATE_LIMIT)
+        h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}
+        r = requests.get(f"{self.API_ROOT}/intelligent/search?id={id}&f={start}&l={end}", headers=h, stream=True)
+        if r.status_code == 200:
+            with open(f"{filename}", "wb") as f:
+                f.write(r.content)
+                f.close()
+            return True
+        else:
+            return r.status_code
+
     def query_results(self, id, limit):
         """
         Query the results from an intelligent search.
@@ -547,6 +572,15 @@ class intelx:
                     self.INTEL_TERMINATE_SEARCH(search_id)
                 done = True
         return {'records': results}
+
+    def exportfromsearch(self, term, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], filename="sample.zip"):
+        search_id = self.INTEL_SEARCH(term, maxresults, buckets, timeout, datefrom, dateto, sort, media, terminate)
+        if(len(str(search_id)) <= 3):
+            print(f"[!] intelx.INTEL_SEARCH() Received {self.get_error(search_id)}")
+            sys.exit()
+        r = self.INTEL_EXPORT(search_id, 1, maxresults, filename)
+        return r
+
 
     def phonebooksearch(self, term, maxresults=1000, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], target=0):
         """
