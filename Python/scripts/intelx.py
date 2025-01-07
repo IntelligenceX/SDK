@@ -117,7 +117,7 @@ def main(argv=None):
     # get the argument parser ready
     parser = argparse.ArgumentParser(
         description="Command line interface for https://intelx.io",
-        epilog="Usage: intelx -search 'riseup.net' -buckets 'pastes, darknet'"
+        epilog="Usage: intelx.py -search 'riseup.net' -buckets 'pastes, darknet'"
     )
 
     parser.add_argument('-apikey', help="set the api key via command line")
@@ -169,7 +169,7 @@ def main(argv=None):
         print('intelx.py v' + str(version('intelx')))
 
     if len(sys.argv) < 2:
-        print('Usage: intelx -search "riseup.net"')
+        print('Usage: intelx.py -search "riseup.net"')
 
     if args.identity:
 
