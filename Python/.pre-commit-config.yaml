@@ -41,3 +41,15 @@ repos:
     hooks:
     -   id: pyprojectsort
         entry: pyprojectsort ./Python/pyproject.toml
+# https://pycqa.github.io/isort/docs/configuration/pre-commit.html
+-   repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+    -   id: isort
+        name: isort (python)
+    -   id: isort
+        name: isort (cython)
+        types: [cython]
+    -   id: isort
+        name: isort (pyi)
+        types: [pyi]
