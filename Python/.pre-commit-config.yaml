@@ -40,3 +40,4 @@ repos:
     rev: v0.4.0
     hooks:
     -   id: pyprojectsort
+        entry: pyprojectsort ./Python/pyproject.toml
