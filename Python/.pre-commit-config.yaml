@@ -36,7 +36,20 @@ repos:
         # Optional extra validations from SchemaStore:
         additional_dependencies: ["validate-pyproject-schema-store[all]"]
 # https://github.com/kieran-ryan/pyprojectsort?tab=readme-ov-file#using-pyprojectsort-with-pre-commit
-# -  repo: https://github.com/kieran-ryan/pyprojectsort
-#    rev: v0.3.0
-#    hooks:
-#    -   id: pyprojectsort
+-   repo: https://github.com/kieran-ryan/pyprojectsort
+    rev: v0.4.0
+    hooks:
+    -   id: pyprojectsort
+        entry: pyprojectsort ./Python/pyproject.toml
+# https://pycqa.github.io/isort/docs/configuration/pre-commit.html
+-   repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+    -   id: isort
+        name: isort (python)
+    -   id: isort
+        name: isort (cython)
+        types: [cython]
+    -   id: isort
+        name: isort (pyi)
+        types: [pyi]
