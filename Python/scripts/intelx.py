@@ -8,6 +8,7 @@ import json
 import time
 import tabulate
 import argparse
+from importlib.metadata import version
 from intelxapi import intelx
 from intelx_identity import IdentityService
 from termcolor import colored
@@ -116,7 +117,7 @@ def main(argv=None):
     # get the argument parser ready
     parser = argparse.ArgumentParser(
         description="Command line interface for https://intelx.io",
-        epilog="Usage: intelx -search 'riseup.net' -buckets 'pastes, darknet'"
+        epilog="Usage: intelx.py -search 'riseup.net' -buckets 'pastes, darknet'"
     )
 
     parser.add_argument('-apikey', help="set the api key via command line")
@@ -158,14 +159,17 @@ def main(argv=None):
             ix = intelx(args.apikey)
 
     else:
+        print(banner)
+        print('intelx.py v' + str(version('intelx')))
         exit('No API key specified. Please use the "-apikey" parameter or set the environment variable "INTELX_KEY".')
 
     # main application flow
     if not args.raw:
         print(banner)
+        print('intelx.py v' + str(version('intelx')))
 
     if len(sys.argv) < 2:
-        print('Usage: intelx -search "riseup.net"')
+        print('Usage: intelx.py -search "riseup.net"')
 
     if args.identity:
 
