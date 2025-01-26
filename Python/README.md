@@ -10,6 +10,8 @@ to perform any kind of open-source intelligence.
 
 ![](scripts/screenshot1.png)
 
+Statistics from the Python Packaging Index are available from [PyPI Stats](https://pypistats.org/packages/intelx)
+
 ## Installation
 
 ### Python Packaging Index
