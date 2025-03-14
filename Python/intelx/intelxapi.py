@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 
 import requests
-# import inspect  # DEBUG
-# import logging  # DEBUG
-# import http.client # DEBUG
+import inspect  # DEBUG
+import logging  # DEBUG
+import http.client # DEBUG
 import time
 import json
 import sys
 import re
 
-# http.client.HTTPConnection.debuglevel = 1  # DEBUG
+http.client.HTTPConnection.debuglevel = 1  # DEBUG
 
-# logging.basicConfig()  # DEBUG
-# logging.getLogger().setLevel(logging.DEBUG)  # DEBUG
-# requests_log = logging.getLogger("requests.packages.urllib3")  # DEBUG
-# requests_log.setLevel(logging.DEBUG)  # DEBUG
-# requests_log.propagate = True  # DEBUG
+logging.basicConfig()  # DEBUG
+logging.getLogger().setLevel(logging.DEBUG)  # DEBUG
+requests_log = logging.getLogger("requests.packages.urllib3")  # DEBUG
+requests_log.setLevel(logging.DEBUG)  # DEBUG
+requests_log.propagate = True  # DEBUG
 
 class intelx:
 
@@ -25,6 +25,8 @@ class intelx:
 
     # The API key must be always supplied
     def __init__(self, key, ua='IX-Python/0.6'):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Initialize API by setting the API key.
         """
@@ -35,6 +37,8 @@ class intelx:
         self.HEADERS = {'X-Key': self.API_KEY, 'User-Agent': self.USER_AGENT}
 
     def get_error(self, code):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Get error string by respective HTTP response code.
         """
@@ -58,6 +62,8 @@ class intelx:
             return "1 | Invalid term"
 
     def cleanup_treeview(self, treeview):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Cleans up treeview output from the API.
         """
@@ -68,6 +74,8 @@ class intelx:
         return lines
 
     def GET_CAPABILITIES(self):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Return a JSON object with the current user's API capabilities
         """
@@ -77,6 +85,8 @@ class intelx:
         return r.json()
 
     def FILE_PREVIEW(self, ctype, mediatype, format, sid, bucket='', e=0, lines=8):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Show a preview of a file's contents based on its storageid (sid).
         format option:
@@ -88,6 +98,8 @@ class intelx:
         return r.text
 
     def FILE_VIEW(self, ctype, mediatype, sid, bucket='', escape=0):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Show a file's contents based on its storageid (sid), convert to text where necessary.
 
@@ -124,6 +136,8 @@ class intelx:
         return r.text
 
     def FILE_READ(self, id, type=0, bucket="", filename=""):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Read a file's raw contents. Use this for direct data download.
 
@@ -150,6 +164,8 @@ class intelx:
         return True
 
     def FILE_TREE_VIEW(self, sid):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Show a treeview of an item that has multiple files/folders
         """
@@ -163,6 +179,8 @@ class intelx:
             return False
 
     def INTEL_SEARCH(self, term, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[]):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Initialize an intelligent search and return the ID of the task/search for further processing.
 
@@ -267,6 +285,8 @@ class intelx:
             return r.status_code
 
     def INTEL_SEARCH_RESULT(self, id, limit):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Return results from an initialized search based on its ID
 
@@ -357,6 +377,8 @@ class intelx:
             return r.status_code
 
     def INTEL_TERMINATE_SEARCH(self, uuid):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Terminate a previously initialized search based on its UUID.
         """
@@ -369,6 +391,8 @@ class intelx:
             return r.status_code
 
     def PHONEBOOK_SEARCH(self, term, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], target=0):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Initialize a phonebook search and return the ID of the task/search for further processing
         """
@@ -394,6 +418,8 @@ class intelx:
             return r.status_code
 
     def PHONEBOOK_SEARCH_RESULT(self, id, limit=1000, offset=-1):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Fetch results from a phonebook search based on ID.
         offset:
@@ -415,6 +441,8 @@ class intelx:
             return r.status_code
 
     def query_results(self, id, limit):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Query the results from an intelligent search.
         Meant for usage within loops.
@@ -423,6 +451,8 @@ class intelx:
         return results
 
     def query_pb_results(self, id, limit):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Query the results from a phonebook search.
         Meant for usage within loops.
@@ -431,6 +461,8 @@ class intelx:
         return results
 
     def treeview(self, id, bucket):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Fetch Tree View for an item. Result is JSON array of items, input is the storage ID of the tree view data.
           a. Historical copies of websites. Use the storage ID from the field "historyfile" in the search result.
@@ -447,6 +479,8 @@ class intelx:
 
 
     def search(self, term, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[]):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Conduct a simple search based on a search term.
         Other arguments have default values set, however they can be overridden to complete an advanced search.
@@ -549,6 +583,8 @@ class intelx:
         return {'records': results}
 
     def phonebooksearch(self, term, maxresults=1000, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], target=0):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         """
         Conduct a phonebook search based on a search term.
         Other arguments have default values set, however they can be overridden to complete an advanced search.
@@ -571,6 +607,8 @@ class intelx:
         return results
 
     def stats(self, search):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         stats = {}
         for record in search['records']:
             if record['bucket'] not in stats:
@@ -580,6 +618,8 @@ class intelx:
         return json.dumps(stats)
 
     def selectors(self, document):
+        frame = inspect.currentframe()  # DEBUG
+        logging.debug('PYthon Function: %s PYthon Filename: %s PYthon Line Number: %s', frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno)  # DEBUG
         time.sleep(self.API_RATE_LIMIT)
         r = requests.get(self.API_ROOT + f'/item/selector/list/human?id={document}&k={self.API_KEY}')
         return r.json()['selectors']

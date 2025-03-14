@@ -34,7 +34,7 @@ keywords = [
 name = "intelx"
 readme = "README.md"
 requires-python = ">=3.9"
-version = "0.7.0dev1"
+version = "0.7.0dev2"
 
 [project.urls]
 "Bug Tracker" = "https://github.com/IntelligenceX/SDK/issues"
