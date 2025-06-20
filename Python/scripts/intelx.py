@@ -143,6 +143,7 @@ def main(argv=None):
     parser.add_argument('--capabilities', help="show your account's capabilities", action="store_true")
     parser.add_argument('--stats', help="show stats of search results", action="store_true")
     parser.add_argument('--raw', help="show raw json", action="store_true")
+    parser.add_argument('--proxy-insecure', help="ignore TLS verification", action="store_false")
     args = parser.parse_args(argv)
 
     # configure IX & the API key
@@ -150,13 +151,13 @@ def main(argv=None):
         if args.identity:
             ix = IdentityService(os.environ['INTELX_KEY'])
         else:
-            ix = intelx(os.environ['INTELX_KEY'])
+            ix = intelx(os.environ['INTELX_KEY'], verify=args.proxy_insecure)
 
     elif args.apikey:
         if args.identity:
             ix_identity = IdentityService(args.apikey)
         else:
-            ix = intelx(args.apikey)
+            ix = intelx(args.apikey, verify=args.proxy_insecure)
 
     else:
         print(banner)
