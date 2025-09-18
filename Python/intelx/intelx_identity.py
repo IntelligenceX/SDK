@@ -98,6 +98,10 @@ class IdentityService(intelx):
                         results.append(a)
                     maxresults -= len(r['records'])
                 if (r['status'] == 2 or maxresults <= 0):
+                    if(r['records']):
+                        for a in r['records']:
+                            results.append(a)
+                        maxresults -= len(r['records'])
                     if (maxresults <= 0):
                         self.terminate_search(search_id)
                     done = True
