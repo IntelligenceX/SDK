@@ -4,7 +4,7 @@
 
 name: 'PyCQA pytest'
 
-on:
+"on":
   push:
   pull_request:
 
