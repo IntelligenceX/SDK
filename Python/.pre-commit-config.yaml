@@ -1,7 +1,8 @@
+---
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
-#https://commitizen-tools.github.io/commitizen/getting_started/#integration-with-pre-commit
+# https://commitizen-tools.github.io/commitizen/getting_started/#integration-with-pre-commit
 -   repo: https://github.com/commitizen-tools/commitizen
     rev: v4.1.0
     hooks:
@@ -53,3 +54,9 @@ repos:
     -   id: isort
         name: isort (pyi)
         types: [pyi]
+# https://yamllint.readthedocs.io/en/stable/integration.html#integration-with-pre-commit
+-   repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.29.0
+    hooks:
+    -   id: yamllint
+        args: [--strict, -c=.yamllint]
