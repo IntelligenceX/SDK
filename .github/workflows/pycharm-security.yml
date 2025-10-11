@@ -1,7 +1,7 @@
 ---
 name: 'PyCharm Security'
 
-on:
+"on":
   push:
   pull_request:
   schedule:
