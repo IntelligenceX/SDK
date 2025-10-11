@@ -33,7 +33,7 @@ keywords = [
 ]
 name = "intelx"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 version = "0.7.0dev1"
 
 [project.urls]
