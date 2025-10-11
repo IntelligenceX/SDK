@@ -2,61 +2,61 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
-# https://commitizen-tools.github.io/commitizen/getting_started/#integration-with-pre-commit
--   repo: https://github.com/commitizen-tools/commitizen
+  # https://commitizen-tools.github.io/commitizen/getting_started/#integration-with-pre-commit
+  - repo: https://github.com/commitizen-tools/commitizen
     rev: v4.1.0
     hooks:
-    -   id: commitizen
--   repo: https://github.com/pre-commit/pre-commit-hooks
+      - id: commitizen
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
-    -   id: trailing-whitespace
-    -   id: end-of-file-fixer
-    -   id: check-yaml
-    -   id: check-added-large-files
-# https://github.com/codespell-project/codespell?tab=readme-ov-file#pre-commit-hook
--   repo: https://github.com/codespell-project/codespell
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+  # https://github.com/codespell-project/codespell?tab=readme-ov-file#pre-commit-hook
+  - repo: https://github.com/codespell-project/codespell
     rev: v2.3.0
     hooks:
-    -   id: codespell
-# https://github.com/markdownlint/markdownlint/blob/main/.pre-commit-hooks.yaml
--   repo: https://github.com/markdownlint/markdownlint
+      - id: codespell
+  # https://github.com/markdownlint/markdownlint/blob/main/.pre-commit-hooks.yaml
+  - repo: https://github.com/markdownlint/markdownlint
     rev: v0.12.0
     hooks:
-    -   id: markdownlint
+      - id: markdownlint
         name: Markdownlint
         description: Run markdownlint on your Markdown files
         entry: mdl -r ~MD024,~MD025,~MD029
         language: ruby
         files: \.(md|mdown|markdown)
-# https://github.com/abravalheri/validate-pyproject?tab=readme-ov-file#pre-commit
--   repo: https://github.com/abravalheri/validate-pyproject
+  # https://github.com/abravalheri/validate-pyproject?tab=readme-ov-file#pre-commit
+  - repo: https://github.com/abravalheri/validate-pyproject
     rev: v0.23
     hooks:
-    -   id: validate-pyproject
+      - id: validate-pyproject
         # Optional extra validations from SchemaStore:
-        additional_dependencies: ["validate-pyproject-schema-store[all]"]
-# https://github.com/kieran-ryan/pyprojectsort?tab=readme-ov-file#using-pyprojectsort-with-pre-commit
--   repo: https://github.com/kieran-ryan/pyprojectsort
+        additional_dependencies: ['validate-pyproject-schema-store[all]']
+  # https://github.com/kieran-ryan/pyprojectsort?tab=readme-ov-file#using-pyprojectsort-with-pre-commit
+  - repo: https://github.com/kieran-ryan/pyprojectsort
     rev: v0.4.0
     hooks:
-    -   id: pyprojectsort
+      - id: pyprojectsort
         entry: pyprojectsort ./Python/pyproject.toml
-# https://pycqa.github.io/isort/docs/configuration/pre-commit.html
--   repo: https://github.com/pycqa/isort
+  # https://pycqa.github.io/isort/docs/configuration/pre-commit.html
+  - repo: https://github.com/pycqa/isort
     rev: 5.13.2
     hooks:
-    -   id: isort
+      - id: isort
         name: isort (python)
-    -   id: isort
+      - id: isort
         name: isort (cython)
         types: [cython]
-    -   id: isort
+      - id: isort
         name: isort (pyi)
         types: [pyi]
-# https://yamllint.readthedocs.io/en/stable/integration.html#integration-with-pre-commit
--   repo: https://github.com/adrienverge/yamllint.git
+  # https://yamllint.readthedocs.io/en/stable/integration.html#integration-with-pre-commit
+  - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.29.0
     hooks:
-    -   id: yamllint
+      - id: yamllint
         args: [--strict, -c=.yamllint]
