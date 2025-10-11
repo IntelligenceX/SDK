@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-24.04
     name: Execute the Duo Dlint action
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python 3.14
-      uses: actions/setup-python@v5
-      with:
-        python-version: 3.14
-    - name: Run Dlint from Duo
-      run: |
-        cd ./Python
-        pip3 install -e .
-        pip3 freeze > requirements.txt
-        pip3 install dlint
-        python3 -m flake8 --select=DUO ./Python
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.14
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.14
+      - name: Run Dlint from Duo
+        run: |
+          cd ./Python
+          pip3 install -e .
+          pip3 freeze > requirements.txt
+          pip3 install dlint
+          python3 -m flake8 --select=DUO ./Python
