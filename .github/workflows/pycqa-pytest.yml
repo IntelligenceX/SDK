@@ -21,20 +21,20 @@ jobs:
         python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python 3 minor releases
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
-    # You can test your matrix by printing the current Python version
-    - name: Display Python version
-      run: python -c "import sys; print(sys.version)"
-    - name: Install dependencies
-      run: |
-        cd ./Python
-        python -m pip install --upgrade pip
-        pip install pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Test with pytest
-      run: |
-        pytest
+      - uses: actions/checkout@v4
+      - name: Set up Python 3 minor releases
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          # You can test your matrix by printing the current Python version
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+      - name: Install dependencies
+        run: |
+          cd ./Python
+          python -m pip install --upgrade pip
+          pip install pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Test with pytest
+        run: |
+          pytest
