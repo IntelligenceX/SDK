@@ -5,7 +5,7 @@ import requests
 
 class IdentityService(intelx):
 
-    def __init__(self, api_key, user_agent='IX-Python/0.6'):
+    def __init__(self, api_key, user_agent='IX-Python/0.7'):
         super().__init__(api_key, user_agent)
         self.API_ROOT = 'https://3.intelx.io'
         self.HEADERS = {'X-Key': self.API_KEY, 'User-Agent': self.USER_AGENT}

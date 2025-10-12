@@ -24,7 +24,7 @@ class intelx:
     USER_AGENT = ''
 
     # The API key must be always supplied
-    def __init__(self, key, ua='IX-Python/0.6'):
+    def __init__(self, key, ua='IX-Python/0.7'):
         """
         Initialize API by setting the API key.
         """
