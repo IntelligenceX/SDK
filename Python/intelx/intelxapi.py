@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 
-import requests
+import json
+import re
+import sys
 # import inspect  # DEBUG
 # import logging  # DEBUG
 # import http.client # DEBUG
 import time
-import json
-import sys
-import re
+
+import requests
 
 # http.client.HTTPConnection.debuglevel = 1  # DEBUG
 
