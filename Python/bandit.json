@@ -1,6 +1,6 @@
 {
   "errors": [],
-  "generated_at": "2025-10-23T03:52:36Z",
+  "generated_at": "2025-10-23T03:55:58Z",
   "metrics": {
     "./intelx/intelx_identity.py": {
       "CONFIDENCE.HIGH": 0,
@@ -55,12 +55,12 @@
       "skipped_tests": 0
     },
     "./scripts/tests/test_main.py": {
-      "CONFIDENCE.HIGH": 1,
+      "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
       "CONFIDENCE.UNDEFINED": 0,
       "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 1,
+      "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
       "loc": 6,
@@ -68,12 +68,12 @@
       "skipped_tests": 0
     },
     "_totals": {
-      "CONFIDENCE.HIGH": 1,
+      "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 15,
       "CONFIDENCE.MEDIUM": 0,
       "CONFIDENCE.UNDEFINED": 0,
       "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 1,
+      "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 15,
       "SEVERITY.UNDEFINED": 0,
       "loc": 912,
@@ -385,26 +385,6 @@
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
       "test_id": "B113",
       "test_name": "request_without_timeout"
-    },
-    {
-      "code": "7         main([\"-search\", \"apple.com\"])\n8     assert pytest_wrapped_e.value.code == 'No API key specified. Please use the \\\"-apikey\\\" parameter or set the environment variable \\\"INTELX_KEY\\\".'\n",
-      "col_offset": 4,
-      "end_col_offset": 150,
-      "filename": "./scripts/tests/test_main.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 8,
-      "line_range": [
-        8
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
     }
   ]
 }
