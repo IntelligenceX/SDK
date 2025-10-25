@@ -266,7 +266,7 @@ results = intelx.search(
    maxresults=1000,
 )
 
-stats = intelx.stats(search)
+stats = intelx.stats(results)
 print(stats)
 ```
 
