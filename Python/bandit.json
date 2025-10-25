@@ -1,15 +1,28 @@
 {
   "errors": [],
-  "generated_at": "2025-10-23T03:55:58Z",
+  "generated_at": "2025-10-26T03:48:43Z",
   "metrics": {
-    "./intelx/intelx_identity.py": {
+    "./intelx/__init__.py": {
       "CONFIDENCE.HIGH": 0,
-      "CONFIDENCE.LOW": 4,
+      "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
       "CONFIDENCE.UNDEFINED": 0,
       "SEVERITY.HIGH": 0,
       "SEVERITY.LOW": 0,
-      "SEVERITY.MEDIUM": 4,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 0,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "./intelx/intelx_identity.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
       "loc": 99,
       "nosec": 0,
@@ -17,12 +30,12 @@
     },
     "./intelx/intelxapi.py": {
       "CONFIDENCE.HIGH": 0,
-      "CONFIDENCE.LOW": 11,
+      "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
       "CONFIDENCE.UNDEFINED": 0,
       "SEVERITY.HIGH": 0,
       "SEVERITY.LOW": 0,
-      "SEVERITY.MEDIUM": 11,
+      "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
       "loc": 508,
       "nosec": 0,
@@ -69,322 +82,17 @@
     },
     "_totals": {
       "CONFIDENCE.HIGH": 0,
-      "CONFIDENCE.LOW": 15,
+      "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
       "CONFIDENCE.UNDEFINED": 0,
       "SEVERITY.HIGH": 0,
       "SEVERITY.LOW": 0,
-      "SEVERITY.MEDIUM": 15,
+      "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
       "loc": 912,
       "nosec": 0,
       "skipped_tests": 0
     }
   },
-  "results": [
-    {
-      "code": "16         params = {'id': id, 'format': format, 'limit': maxresults}\n17         r = requests.get(self.API_ROOT + '/live/search/result',\n18                          params, headers=self.HEADERS)\n19         if r.status_code == 200:\n",
-      "col_offset": 12,
-      "end_col_offset": 54,
-      "filename": "./intelx/intelx_identity.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 17,
-      "line_range": [
-        17,
-        18
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "37         results = []\n38         r = requests.get(self.API_ROOT + '/live/search/internal',\n39                          headers=self.HEADERS, params=p)\n40         if r.status_code == 200:\n",
-      "col_offset": 12,
-      "end_col_offset": 56,
-      "filename": "./intelx/intelx_identity.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 38,
-      "line_range": [
-        38,
-        39
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "68         }\n69         r = requests.get(self.API_ROOT + '/live/search/internal',\n70                          headers=self.HEADERS, params=p)\n71         if r.status_code == 204:\n",
-      "col_offset": 12,
-      "end_col_offset": 56,
-      "filename": "./intelx/intelx_identity.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 69,
-      "line_range": [
-        69,
-        70
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "86         results = []\n87         r = requests.get(self.API_ROOT + '/accounts/csv',\n88                          headers=self.HEADERS, params=p)\n89         if r.status_code == 200:\n",
-      "col_offset": 12,
-      "end_col_offset": 56,
-      "filename": "./intelx/intelx_identity.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 87,
-      "line_range": [
-        87,
-        88
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "76         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}\n77         r = requests.get(f\"{self.API_ROOT}/authenticate/info\", headers=h)\n78         return r.json()\n",
-      "col_offset": 12,
-      "end_col_offset": 73,
-      "filename": "./intelx/intelxapi.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 77,
-      "line_range": [
-        77
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "87         time.sleep(self.API_RATE_LIMIT)\n88         r = requests.get(f\"{self.API_ROOT}/file/preview?c={ctype}&m={mediatype}&f={format}&sid={sid}&b={bucket}&e={e}&l={lines}&k={self.API_KEY}\")\n89         return r.text\n",
-      "col_offset": 12,
-      "end_col_offset": 146,
-      "filename": "./intelx/intelxapi.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 88,
-      "line_range": [
-        88
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "123         time.sleep(self.API_RATE_LIMIT)\n124         r = requests.get(f\"{self.API_ROOT}/file/view?f={format}&storageid={sid}&bucket={bucket}&escape={escape}&k={self.API_KEY}\")\n125         return r.text\n",
-      "col_offset": 12,
-      "end_col_offset": 130,
-      "filename": "./intelx/intelxapi.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 124,
-      "line_range": [
-        124
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "146         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}\n147         r = requests.get(f\"{self.API_ROOT}/file/read?type={type}&systemid={id}&bucket={bucket}\", headers=h, stream=True)\n148         with open(f\"{filename}\", \"wb\") as f:\n",
-      "col_offset": 12,
-      "end_col_offset": 120,
-      "filename": "./intelx/intelxapi.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 147,
-      "line_range": [
-        147
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "261         time.sleep(self.API_RATE_LIMIT)\n262         r = requests.post(self.API_ROOT + '/intelligent/search', headers=h, json=p)\n263         if r.status_code == 200:\n",
-      "col_offset": 12,
-      "end_col_offset": 83,
-      "filename": "./intelx/intelxapi.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 262,
-      "line_range": [
-        262
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "353         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}\n354         r = requests.get(self.API_ROOT + f'/intelligent/search/result?id={id}&limit={limit}', headers=h)\n355         if(r.status_code == 200):\n",
-      "col_offset": 12,
-      "end_col_offset": 104,
-      "filename": "./intelx/intelxapi.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 354,
-      "line_range": [
-        354
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "365         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}\n366         r = requests.get(self.API_ROOT + f'/intelligent/search/terminate?id={uuid}', headers=h)\n367         if(r.status_code == 200):\n",
-      "col_offset": 12,
-      "end_col_offset": 95,
-      "filename": "./intelx/intelxapi.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 366,
-      "line_range": [
-        366
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "390         }\n391         r = requests.post(self.API_ROOT + '/phonebook/search', headers=h, json=p)\n392         if r.status_code == 200:\n",
-      "col_offset": 12,
-      "end_col_offset": 81,
-      "filename": "./intelx/intelxapi.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 391,
-      "line_range": [
-        391
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "411         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}\n412         r = requests.get(self.API_ROOT + f'/phonebook/search/result?id={id}&limit={limit}&offset={offset}', headers=h)\n413         if(r.status_code == 200):\n",
-      "col_offset": 12,
-      "end_col_offset": 118,
-      "filename": "./intelx/intelxapi.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 412,
-      "line_range": [
-        412
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "441         h = {'x-key': self.API_KEY, 'User-Agent': self.USER_AGENT}\n442         r = requests.get(self.API_ROOT + f'/file/view?f=13&storageid={id}&bucket={bucket}', headers=h)\n443 \n",
-      "col_offset": 12,
-      "end_col_offset": 102,
-      "filename": "./intelx/intelxapi.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 442,
-      "line_range": [
-        442
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    },
-    {
-      "code": "584         time.sleep(self.API_RATE_LIMIT)\n585         r = requests.get(self.API_ROOT + f'/item/selector/list/human?id={document}&k={self.API_KEY}')\n586         return r.json()['selectors']\n",
-      "col_offset": 12,
-      "end_col_offset": 101,
-      "filename": "./intelx/intelxapi.py",
-      "issue_confidence": "LOW",
-      "issue_cwe": {
-        "id": 400,
-        "link": "https://cwe.mitre.org/data/definitions/400.html"
-      },
-      "issue_severity": "MEDIUM",
-      "issue_text": "Call to requests without timeout",
-      "line_number": 585,
-      "line_range": [
-        585
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b113_request_without_timeout.html",
-      "test_id": "B113",
-      "test_name": "request_without_timeout"
-    }
-  ]
+  "results": []
 }
