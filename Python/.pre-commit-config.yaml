@@ -4,11 +4,11 @@
 repos:
   # https://commitizen-tools.github.io/commitizen/getting_started/#integration-with-pre-commit
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.1.0
+    rev: v4.9.1
     hooks:
       - id: commitizen
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -16,7 +16,7 @@ repos:
       - id: check-added-large-files
   # https://github.com/codespell-project/codespell?tab=readme-ov-file#pre-commit-hook
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.3.0
+    rev: v2.4.1
     hooks:
       - id: codespell
   # https://github.com/markdownlint/markdownlint/blob/main/.pre-commit-hooks.yaml
@@ -31,7 +31,7 @@ repos:
         files: \.(md|mdown|markdown)
   # https://github.com/abravalheri/validate-pyproject?tab=readme-ov-file#pre-commit
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.23
+    rev: v0.24.1
     hooks:
       - id: validate-pyproject
         # Optional extra validations from SchemaStore:
@@ -44,7 +44,7 @@ repos:
         entry: pyprojectsort ./Python/pyproject.toml
   # https://pycqa.github.io/isort/docs/configuration/pre-commit.html
   - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
+    rev: 7.0.0
     hooks:
       - id: isort
         name: isort (python)
@@ -56,7 +56,7 @@ repos:
         types: [pyi]
   # https://yamllint.readthedocs.io/en/stable/integration.html#integration-with-pre-commit
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.29.0
+    rev: v1.37.1
     hooks:
       - id: yamllint
         args: [--strict, -c=.yamllint]
