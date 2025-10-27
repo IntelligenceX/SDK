@@ -1,12 +1,10 @@
 ---
-name: 'PyCharm Security'
-
+name: PyCharm Security
 "on":
   push:
   pull_request:
   schedule:
     - cron: '* * 3 * *'
-
 jobs:
   security_checks:
     # runs-on: ubuntu-latest

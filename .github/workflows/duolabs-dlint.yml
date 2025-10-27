@@ -1,10 +1,8 @@
 ---
-name: 'Duo Dlint'
-
+name: Duo Dlint
 "on":
   push:
   pull_request:
-
 jobs:
   security_checks:
     # runs-on: ubuntu-latest
@@ -17,7 +15,7 @@ jobs:
         with:
           python-version: 3.14
       - name: Run Dlint from Duo
-        run: |
+        run: |-
           cd ./Python
           pip3 install -e .
           pip3 freeze > requirements.txt

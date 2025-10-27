@@ -1,23 +1,17 @@
 ---
-
-name: 'PyCQA pytest'
-
+name: PyCQA pytest
 "on":
   push:
   pull_request:
-
 permissions:
   contents: read
-
 jobs:
   build:
-
     # runs-on: ubuntu-latest
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
-
+        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python 3 minor releases
@@ -33,5 +27,5 @@ jobs:
           pip install pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Test with pytest
-        run: |
+        run: |-
           pytest
