@@ -1,4 +1,10 @@
+--index-url https://pypi.python.org/simple/
+
+-r requirements.txt
+
 build
 twine
 pre-commit
 git-cliff
+bandit
+uv
