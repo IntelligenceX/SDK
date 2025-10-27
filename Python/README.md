@@ -1,9 +1,16 @@
 # intelx.py
 
+![PyPI - Version](https://img.shields.io/pypi/v/intelx)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/intelx)
+![PyPI - Downloads](https://img.shields.io/pypi/dw/intelx)
+![PyPI - Downloads](https://img.shields.io/pypi/dd/intelx)
+
 intelx.py is a Python command-line utility and API wrapper for intelx.io, made
 to perform any kind of open-source intelligence.
 
 ![](scripts/screenshot1.png)
+
+Statistics from the Python Packaging Index are available from [PyPI Stats](https://pypistats.org/packages/intelx)
 
 ## Installation
 
