@@ -9,6 +9,7 @@ import sys
 import time
 
 import requests
+import warnings
 
 # http.client.HTTPConnection.debuglevel = 1  # DEBUG
 
@@ -17,6 +18,14 @@ import requests
 # requests_log = logging.getLogger("requests.packages.urllib3")  # DEBUG
 # requests_log.setLevel(logging.DEBUG)  # DEBUG
 # requests_log.propagate = True  # DEBUG
+
+
+class SoftSelectorError(Exception):
+    """
+    Raised when a search term is rejected as a soft selector.
+    """
+    pass
+
 
 class intelx:
 
@@ -447,7 +456,7 @@ class intelx:
             return r.status_code
 
 
-    def search(self, term, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[]):
+    def search(self, term, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], on_soft_selector='warn'):
         """
         Conduct a simple search based on a search term.
         Other arguments have default values set, however they can be overridden to complete an advanced search.
@@ -511,6 +520,12 @@ class intelx:
         - 23: HTML file
         - 24: Text file
 
+        on_soft_selector option:
+        - Define how to handle soft selector rejections.
+        - 'warn': (Default) Issue a warning and return empty results.
+        - 'raise': Raise a SoftSelectorError exception.
+        - 'silent': Quietly return empty results without warning.
+
         The term must be a strong selector. These selector types are currently supported:
         - Email address
         - Domain, including wildcards like *.example.com
@@ -528,7 +543,7 @@ class intelx:
         - Credit card number
         - IBAN
 
-        Soft selectors (generic terms) are not supported!
+        Soft selectors (generic terms) are not supported and will be handled according to on_soft_selector parameter!
 
         """
         results = []
@@ -540,19 +555,38 @@ class intelx:
         while done == False:
             time.sleep(1)  # lets give the backend a chance to aggregate our data
             r = self.query_results(search_id, maxresults)
-            for a in r['records']:
-                results.append(a)
-            maxresults -= len(r['records'])
+
+            if r['status'] == 2 and r['records'] is None:
+                error_msg = (f"Search term '{term}' was rejected as a soft selector.")
+
+                if on_soft_selector == 'raise':
+                    raise SoftSelectorError(error_msg)
+                elif on_soft_selector == 'warn':
+                    warnings.warn(error_msg, UserWarning, stacklevel=2)
+
+                return {'records': []}
+
+            if r['records'] is not None:
+                for a in r['records']:
+                    results.append(a)
+                maxresults -= len(r['records'])
+
             if(r['status'] == 1 or r['status'] == 2 or maxresults <= 0):
                 if(maxresults <= 0):
                     self.INTEL_TERMINATE_SEARCH(search_id)
                 done = True
         return {'records': results}
 
-    def phonebooksearch(self, term, maxresults=1000, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], target=0):
+    def phonebooksearch(self, term, maxresults=1000, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], target=0, on_soft_selector='warn'):
         """
         Conduct a phonebook search based on a search term.
         Other arguments have default values set, however they can be overridden to complete an advanced search.
+
+        on_soft_selector option:
+        - Define how to handle soft selector rejections.
+        - 'warn': (Default) Issue a warning and return empty results.
+        - 'raise': Raise a SoftSelectorError exception.
+        - 'silent': Quietly return empty results without warning.
         """
         results = []
         done = False
@@ -563,8 +597,20 @@ class intelx:
         while done == False:
             time.sleep(1)  # lets give the backend a chance to aggregate our data
             r = self.query_pb_results(search_id, maxresults)
+
+            if r['status'] == 2 and r.get('selectors') is None:
+                error_msg = (f"Search term '{term}' was rejected as a soft selector.")
+
+                if on_soft_selector == 'raise':
+                    raise SoftSelectorError(error_msg)
+                elif on_soft_selector == 'warn':
+                    warnings.warn(error_msg, UserWarning, stacklevel=2)
+
+                return []
+
             results.append(r)
-            maxresults -= len(r['selectors'])
+            if r.get('selectors') is not None:
+                maxresults -= len(r['selectors'])
             if(r['status'] == 1 or r['status'] == 2 or maxresults <= 0):
                 if(maxresults <= 0):
                     self.INTEL_TERMINATE_SEARCH(search_id)
