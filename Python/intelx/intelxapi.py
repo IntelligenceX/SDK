@@ -68,28 +68,31 @@ class intelx:
 
         return requests.post(url, data=data, json=json, headers=headers, proxies=proxies, verify=verify, timeout=timeout, **kwargs, )
 
-    def get_error(self, code):
+    def handle_search_id(self, search_id):
         """
-        Get error string by respective HTTP response code.
-        """
-        if code == 200:
-            return "200 | Success"
-        if code == 204:
-            return "204 | No Content"
-        if code == 400:
-            return "400 | Bad Request"
-        if code == 401:
-            return "401 | Unauthorized"
-        if code == 402:
-            return "402 | Payment required."
-        if code == 404:
-            return "404 | Not Found"
+        Validate search_id and raise an exception on known error codes.
 
+        :raises Exception: when search_id indicates an error.
         """
-        Get error string by respective intelx.io status code.
-        """
-        if code == 1:
-            return "1 | Invalid term"
+        # numeric error codes (400, 401, 403, 404, 500, …)
+        if isinstance(search_id, int):
+            message = f"Search failed with status {search_id}"
+            if search_id == 400:
+                raise Exception(f"{message} (Bad Request)")
+            elif search_id == 401:
+                raise Exception(f"{message} (Unauthorized – invalid or missing apiKey)")
+            elif search_id == 403:
+                raise Exception(f"{message} (Forbidden – insufficient permissions)")
+            elif search_id == 404:
+                raise Exception(f"{message} (Item not found)")
+            elif search_id == 500:
+                raise Exception(f"{message} (Internal server error)")
+            else:
+                raise Exception(message)
+
+        # empty UUID case
+        if search_id == "00000000-0000-0000-0000-000000000000":
+            raise Exception("Empty Search Id (Item not found)")
 
     def cleanup_treeview(self, treeview):
         """
@@ -525,9 +528,8 @@ class intelx:
     def exportfromsearch(self, term, export_format=0, maxresults=100, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], filename=None):
         search_id = self.INTEL_SEARCH(term, maxresults, buckets, timeout, datefrom, dateto, sort, media, terminate)
 
-        if(len(str(search_id)) <= 3):
-            print(f"[!] intelx.INTEL_SEARCH() Received {self.get_error(search_id)}")
-            sys.exit()
+        self.handle_search_id(search_id)
+        
         r = self.INTEL_EXPORT(search_id, export_format, maxresults)
         return r
 
@@ -646,9 +648,9 @@ class intelx:
         results = []
         done = False
         search_id = self.INTEL_SEARCH(term, maxresults, buckets, timeout, datefrom, dateto, sort, media, terminate)
-        if(len(str(search_id)) <= 3):
-            print(f"[!] intelx.INTEL_SEARCH() Received {self.get_error(search_id)}")
-            sys.exit()
+
+        self.handle_search_id(search_id)
+
         while done == False:
             time.sleep(1)  # lets give the backend a chance to aggregate our data
             r = self.query_results(search_id, maxresults)
@@ -669,9 +671,9 @@ class intelx:
         results = []
         done = False
         search_id = self.PHONEBOOK_SEARCH(term, maxresults, buckets, timeout, datefrom, dateto, sort, media, terminate, target)
-        if(len(str(search_id)) <= 3):
-            print(f"[!] intelx.PHONEBOOK_SEARCH() Received {self.get_error(search_id)}")
-            sys.exit()
+
+        self.handle_search_id(search_id)
+
         while done == False:
             time.sleep(1)  # lets give the backend a chance to aggregate our data
             r = self.query_pb_results(search_id, maxresults)
