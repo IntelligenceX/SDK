@@ -74,14 +74,73 @@ class IdentityLeaks extends IntelXClient {
         }
     }
 
-    async searchInternalResult(id)
+    async searchInternalResult(id, { limit = 100, format = 0})
     {
         if (this.apiRateLimit) {
             await new Promise(resolve => setTimeout(resolve, this.apiRateLimit));
         }
-        const params = {id: id}
+        const params = {
+            id: id,
+            limit: limit,
+            format: format,
+        }
         const r = await this._get('/live/search/result', {params: params})
         return await r.json()
+    }
+
+    async reverseDomain(term, {maxresults = 10, format = 0, datefrom = null, dateto = null, terminate = null})
+    {
+        const searchId = await this.reverseDomainSearchId(term, {maxresults, datefrom, dateto, terminate})
+
+        this.handleSearchId(searchId)
+
+        let remaining = maxresults;
+        // Poll until done
+        const results = []
+        while (true) {
+            await new Promise(resolve => setTimeout(resolve, this.apiRateLimit));
+
+            // Fetch next chunk of results
+            const r = await this.searchInternalResult(searchId, {limit: remaining, format});
+
+            const records = r.records || [];
+            for (const rec of records) {
+                results.push(rec);
+            }
+
+            remaining -= records.length;
+
+            // status 1 or 2 or no more results allowed
+            if (r.status === 1 || r.status === 2 || remaining <= 0) {
+                if (remaining <= 0) {
+                    await this.terminateLiveSearch(searchId);
+                }
+                break
+            }
+        }
+        return results
+    }
+
+    async reverseDomainSearchId(term, {maxresults = 10, datefrom = null, dateto = null, terminate = null}) {
+        const params = {
+            selector: term,
+            limit: maxresults,
+            datefrom: datefrom,  // "YYYY-MM-DD HH:MM:SS",
+            dateto: dateto,  // "YYYY-MM-DD HH:MM:SS"
+            terminate: terminate,
+        }
+
+        const r = await this._get('/reverse/domain', {params: params})
+
+        if (r.status === 200) {
+            const data = await r.json();
+            if (data.status === 1 || data.status === 2) {
+                return data.status;
+            }
+            return data.id;
+        } else {
+            return r.status;
+        }
     }
 
     /**
