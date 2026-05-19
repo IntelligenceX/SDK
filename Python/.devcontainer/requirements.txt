@@ -1,6 +1,6 @@
 certifi==2025.10.5
 charset-normalizer==3.4.3
-idna==3.10
+idna==3.15
 Pygments==2.20.0
 requests==2.33.0
 tabulate==0.9.0
