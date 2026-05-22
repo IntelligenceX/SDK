@@ -1,9 +1,0 @@
-certifi==2025.10.5
-charset-normalizer==3.4.3
-idna==3.10
-Pygments==2.20.0
-requests==2.33.0
-tabulate==0.9.0
-termcolor==3.1.0
-urllib3==2.7.0
-python-dotenv>=1.0,<2

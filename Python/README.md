@@ -52,6 +52,8 @@ python -m pip install -e .
 
 ### Docker + VS Code
 
+#### Setup
+
 Open the Dev Container and get a shell (VS Code)
 
 1. Set up the environment variable as described in the [Environment Variable](#environment-variable) section.
@@ -65,6 +67,10 @@ Open the Dev Container and get a shell (VS Code)
 - Not in a container? Click the green corner button (><) → **Reopen in Container**.
 - Need a clean build? **Dev Containers: Rebuild Without Cache**.
 
+#### Configure
+
+1. $VIRTUAL_ENV is configured for the path of the virtual environment theefore executing `source $VIRTUAL_ENV/bin/activate`
+2. The development dependencies are installed by executing `pip install --no-cache-dir -r ./requirements-dev.txt && pip check`
 
 ```bash
 python -m pip install -e .
