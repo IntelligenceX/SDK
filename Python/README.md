@@ -92,15 +92,15 @@ INTELX_BASE_URL="https://2.intelx.io"
 ### Via the client
 
 ```bash
- export INTELX_APIKEY=00000000-0000-0000-0000-000000000000
+ export INTELX_KEY=00000000-0000-0000-0000-000000000000
 
-intelx.py -search riseup.net -apikey "$INTELX_APIKEY"
+intelx.py -search riseup.net -apikey "$INTELX_KEY"
 ```
 
 or, when running directly from the source tree:
 
 ```bash
-python -m scripts.intelx -search riseup.net -apikey "$INTELX_APIKEY"
+python -m scripts.intelx -search riseup.net -apikey "$INTELX_KEY"
 ```
 
 ## Configuration
