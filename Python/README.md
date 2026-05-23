@@ -87,6 +87,8 @@ Copy ```.env.sample``` to ```.env``` and set your values. You can create also yo
 # create an INTELX_KEY env var with your API key.
 INTELX_KEY="00000000-0000-0000-0000-000000000000"
 INTELX_BASE_URL="https://2.intelx.io"
+
+$ set -a; source .env; set +a
 ```
 
 ### Via the client
