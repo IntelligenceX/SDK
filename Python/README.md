@@ -168,6 +168,14 @@ use the `--view` parameter:
 intelx.py -search 3a4d5699-737c-4d22-8dbd-c5391ce805df --view
 ```
 
+#### Export Search
+
+To export the full data of a specific search result, use the `--exportfromsearch` and `--exportfileformat` parameters:
+
+```bash
+intelx.py -search email@email.com --exportfromsearch --exportfileformat 1 -limit 5 -buckets "pastes,leaks.private.general, leaks.logs, whois, usenet"
+```
+
 #### Extract Email from Phonebook Search
 
 ```bash
