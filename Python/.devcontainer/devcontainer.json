@@ -1,21 +1,7 @@
-git{
-  "name": "intelx-py-dev",
-  "build": { "dockerfile": "Dockerfile", "context": "." },
-  "runArgs": ["--env-file", ".env"],
-  "remoteUser": "vscode",
-  "postCreateCommand": "python -m pip install --upgrade pip",
-  "postStartCommand": "python -m pip install -r ${containerWorkspaceFolder}/requirements.txt --break-system-packages",
-  "workspaceFolder": "/workspaces",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "ms-python.python",
-        "ms-python.vscode-pylance",
-        "ms-toolsai.jupyter"
-      ],
-      "settings": {
-        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python"
-      }
-    }
-  }
+{
+  "build": {
+    "dockerfile": "Dockerfile"
+    "context": ".."
+  },
+  "name": "IntelX SDK Dev Container"
 }
