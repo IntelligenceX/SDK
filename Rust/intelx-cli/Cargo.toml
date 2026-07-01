@@ -1,0 +1,29 @@
+[package]
+name = "intelx-cli"
+description = "Command-line client for the Intelligence X (intelx.io) API, built on the intelx crate"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[[bin]]
+name = "intelx"
+path = "src/main.rs"
+
+[dependencies]
+intelx.workspace = true
+tokio.workspace = true
+clap = { version = "4", features = ["derive"] }
+dotenvy.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+colored = "2"
+comfy-table = "7"
+
+[dev-dependencies]
+assert_cmd = "2"
+predicates = "3"

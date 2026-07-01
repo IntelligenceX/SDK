@@ -1,0 +1,36 @@
+---
+name: Rust
+"on":
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build-test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@1.96.0
+        with:
+          components: clippy, rustfmt
+      - name: Cache cargo registry and target dir
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: Rust -> target
+      - name: Build
+        run: |
+          cd ./Rust
+          cargo build --workspace --all-targets
+      - name: Test
+        run: |
+          cd ./Rust
+          cargo test --workspace
+      - name: Clippy
+        run: |
+          cd ./Rust
+          cargo clippy --workspace --all-targets -- -D warnings
+      - name: Format check
+        run: |
+          cd ./Rust
+          cargo fmt --all -- --check

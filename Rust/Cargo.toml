@@ -1,0 +1,29 @@
+[workspace]
+resolver = "3"
+members = ["intelx", "intelx-cli"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.96.0"
+license = "MIT"
+repository = "https://github.com/IntelligenceX/SDK"
+authors = ["Intelligence X <info@intelx.io>"]
+
+[workspace.dependencies]
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream", "gzip", "rustls-tls"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "fs", "io-util"] }
+tokio-util = { version = "0.7", features = ["io"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_repr = "0.1"
+thiserror = "2"
+uuid = { version = "1", features = ["v4", "serde"] }
+url = "2"
+bytes = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+dotenvy = "0.15"
+futures-util = "0.3"
+
+intelx = { path = "intelx", version = "0.1.0" }

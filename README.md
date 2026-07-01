@@ -11,9 +11,11 @@ The SDK contains these parts:
 3. [PHP code example](PHP/index.php)
 4. [Python code examples](Python/examples)
 5. [Go package and code](Go/ixapi/README.md)
-6. [Maltego Transform](Maltego%20Transform/README.md)
+6. [Rust crate and CLI](Rust/README.md)
+7. [Maltego Transform](Maltego%20Transform/README.md)
 
 Latest updates:
+* 30.06.2026 - New Rust SDK and command-line client
 * 30.11.2024 - 0.6.2 installable from [Python Package Index](https://pypi.org/project/intelx/)
 * 06.06.2024 - Python supports "Export Leaked Accounts" of identity.intelx.io
 * <s>02.02.2024 - Python Package moved to [Python Repository](https://github.com/IntelligenceX/Python)</s>

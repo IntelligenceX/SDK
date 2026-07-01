@@ -1,0 +1,62 @@
+[package]
+name = "intelx"
+description = "Async Rust SDK for the Intelligence X (intelx.io) search engine and data archive API"
+keywords = ["osint", "intelx", "intelligence-x", "search", "threat-intel"]
+categories = ["api-bindings"]
+readme = "../README.md"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[dependencies]
+reqwest.workspace = true
+tokio.workspace = true
+tokio-util.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+serde_repr.workspace = true
+thiserror.workspace = true
+uuid.workspace = true
+url.workspace = true
+bytes.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["macros", "rt-multi-thread", "test-util"] }
+dotenvy.workspace = true
+wiremock = "0.6"
+tempfile = "3"
+tracing-subscriber.workspace = true
+
+[[example]]
+name = "search"
+
+[[example]]
+name = "advanced_search"
+
+[[example]]
+name = "authenticate_info"
+
+[[example]]
+name = "download"
+
+[[example]]
+name = "file_preview"
+
+[[example]]
+name = "file_view"
+
+[[example]]
+name = "idsearch"
+
+[[example]]
+name = "reverse_domain"
+
+[[example]]
+name = "search_with_results"
+
+[[example]]
+name = "stats"
