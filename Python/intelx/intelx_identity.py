@@ -27,7 +27,7 @@ class IdentityService(intelx):
             "terminate": terminate,
         }
         done = False
-        results = []
+        result_pages = []
         r = self._get('/live/search/internal', params=p)
         if r.status_code == 200:
             search_id = r.json()['id']
@@ -40,19 +40,17 @@ class IdentityService(intelx):
             time.sleep(self.API_RATE_LIMIT)
             r = self.get_search_results(search_id, maxresults=maxresults)
             if (r["status"] == 0 and r["records"]):
-                for a in r['records']:
-                    results.append(a)
+                result_pages.append(r['records'])
                 maxresults -= len(r['records'])
             if (r['status'] == 2 or maxresults <= 0):
-                for a in r['records']:
-                    results.append(a)
+                result_pages.append(r['records'])
                 if (maxresults <= 0):
                     self.terminate_search(search_id)
                 done = True
             if r['status'] == 3:
                 self.terminate_search(search_id)
                 done = True
-        return {'records': results}
+        return {'records': [*page for page in result_pages]}
 
     def terminate_search(self, id):
         p = {
@@ -74,7 +72,7 @@ class IdentityService(intelx):
             "terminate": terminate,
         }
         done = False
-        results = []
+        result_pages = []
         r = self._get('/accounts/csv', params=p)
         if r.status_code == 200:
             search_id = r.json()['id']
@@ -85,18 +83,16 @@ class IdentityService(intelx):
                 time.sleep(self.API_RATE_LIMIT)
                 r = self.get_search_results(search_id, maxresults=maxresults)
                 if (r["status"] == 0 and r["records"]):
-                    for a in r['records']:
-                        results.append(a)
+                    result_pages.append(r['records'])
                     maxresults -= len(r['records'])
                 if (r['status'] == 2 or maxresults <= 0):
                     if(r['records']):
-                        for a in r['records']:
-                            results.append(a)
+                        result_pages.append(r['records'])
                         maxresults -= len(r['records'])
                     if (maxresults <= 0):
                         self.terminate_search(search_id)
                     done = True
-            return {'records': results}
+            return {'records': [*page for page in result_pages]}
         else:
             return (r.status_code, r.text)
 
@@ -109,7 +105,7 @@ class IdentityService(intelx):
             "terminate": terminate,
         }
         done = False
-        results = []
+        result_pages = []
         r = self._get('/reverse/domain', params=p)
         if r.status_code == 200:
             search_id = r.json()['id']
@@ -121,17 +117,15 @@ class IdentityService(intelx):
                 time.sleep(self.API_RATE_LIMIT)
                 r = self.get_search_results(search_id, maxresults=maxresults)
                 if (r["status"] == 0 and r["records"]):
-                    for a in r['records']:
-                        results.append(a)
+                    result_pages.append(r['records'])
                     maxresults -= len(r['records'])
                 if (r['status'] == 2 or maxresults <= 0):
                     if(r['records']):
-                        for a in r['records']:
-                            results.append(a)
+                        result_pages.append(r['records'])
                         maxresults -= len(r['records'])
                     if (maxresults <= 0):
                         self.terminate_search(search_id)
                     done = True
-            return {'records': results}
+            return {'records': [*page for page in result_pages]}
         else:
             return (r.status_code, r.text)

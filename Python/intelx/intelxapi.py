@@ -643,7 +643,7 @@ class intelx:
         Soft selectors (generic terms) are not supported!
 
         """
-        results = []
+        result_pages = []
         done = False
         search_id = self.INTEL_SEARCH(term, maxresults, buckets, timeout, datefrom, dateto, sort, media, terminate)
         if(len(str(search_id)) <= 3):
@@ -652,14 +652,13 @@ class intelx:
         while done == False:
             time.sleep(1)  # lets give the backend a chance to aggregate our data
             r = self.query_results(search_id, maxresults)
-            for a in r['records']:
-                results.append(a)
+            result_pages.append(r['records'])
             maxresults -= len(r['records'])
             if(r['status'] == 1 or r['status'] == 2 or maxresults <= 0):
                 if(maxresults <= 0):
                     self.INTEL_TERMINATE_SEARCH(search_id)
                 done = True
-        return {'records': results}
+        return {'records': [*page for page in result_pages]}
 
     def phonebooksearch(self, term, maxresults=1000, buckets=[], timeout=5, datefrom="", dateto="", sort=4, media=0, terminate=[], target=0):
         """
