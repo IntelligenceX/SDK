@@ -488,7 +488,7 @@ class intelx:
         Export all file from search. Use this for direct data download All file in one time.
         id - Specifies search ID.
         f -	Export format (0 csv, 1 zip).
-        l -	Result limit. Defaults to 1000. (opitional)
+        l -	Result limit. Defaults to 1000. (optional)
         """
         time.sleep(self.API_RATE_LIMIT)
         p = {
